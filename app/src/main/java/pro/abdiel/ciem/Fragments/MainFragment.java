@@ -1,4 +1,4 @@
-package pro.abdiel.ciem;
+package pro.abdiel.ciem.Fragments;
 
 import android.app.Activity;
 import android.os.Bundle;
@@ -16,6 +16,8 @@ import com.budiyev.android.codescanner.CodeScanner;
 import com.budiyev.android.codescanner.CodeScannerView;
 import com.budiyev.android.codescanner.DecodeCallback;
 import com.google.zxing.Result;
+
+import pro.abdiel.ciem.R;
 
 public class MainFragment extends Fragment {
     private CodeScanner mCodeScanner;
