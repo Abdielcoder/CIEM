@@ -26,6 +26,7 @@ import com.budiyev.android.codescanner.CodeScanner;
 import com.budiyev.android.codescanner.CodeScannerView;
 import com.budiyev.android.codescanner.DecodeCallback;
 import com.google.zxing.Result;
+import com.sagarkoli.chetanbottomnavigation.chetanBottomNavigation;
 
 import java.io.ByteArrayOutputStream;
 import java.util.Calendar;
@@ -34,13 +35,25 @@ import java.util.Hashtable;
 import java.util.Map;
 
 public class MainActivity extends AppCompatActivity {
+    //Scanner
     private CodeScanner mCodeScanner;
-    String UPLOAD_URL;
-    String codigoBarras;
+    private String UPLOAD_URL;
+    private String codigoBarras;
+
+    //Bottom Navigation
+    chetanBottomNavigation bottomNavigation;
+    private static final int scanner = 1;
+    private static final int day = 2;
+    private static final int noti = 3;
+    private static final int profile = 4;
+    private static final int info = 5;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        //Scanner Logic
         CodeScannerView scannerView = findViewById(R.id.scanner_view);
         UPLOAD_URL = getString(R.string.app_upload);
         mCodeScanner = new CodeScanner(this, scannerView);
@@ -67,8 +80,72 @@ public class MainActivity extends AppCompatActivity {
         if (ContextCompat.checkSelfPermission(MainActivity.this, Manifest.permission.CAMERA) !=
                 PackageManager.PERMISSION_GRANTED) {
             ActivityCompat.requestPermissions(this, new String[] {Manifest.permission.CAMERA},
-                    50); }
+                    50);
+        }
 
+      ;
+        //Adding custom icons
+        bottomNavigation = findViewById(R.id.bottomNavigation);
+        bottomNavigation.add(new chetanBottomNavigation.Model(scanner,R.drawable.qr_black_24));
+        bottomNavigation.add(new chetanBottomNavigation.Model(profile,R.drawable.person_black_24));
+        bottomNavigation.add(new chetanBottomNavigation.Model(day,R.drawable.report_black_24));
+        bottomNavigation.add(new chetanBottomNavigation.Model(noti,R.drawable.message_black_24));
+        bottomNavigation.add(new chetanBottomNavigation.Model(info,R.drawable.info_black_24));
+
+        //Bottom Navigation Logic
+        bottomNavigation.setCount(noti,"10");
+
+        bottomNavigation.setOnShowListener(new chetanBottomNavigation.ShowListener(){
+
+            @Override
+            public void onShowItem(chetanBottomNavigation.Model item) {
+                String name;
+                switch (item.getId()){
+                    case scanner:
+                    name = "SCANNER";
+                    break;
+
+                    case profile:
+                        name = "PERFIL";
+                        break;
+
+                    case day:
+                        name = "DIA";
+                        break;
+
+                    case noti:
+                        name = "NOTIFICACION";
+                        break;
+
+                    case info:
+                        name = "INFORMACION";
+                        break;
+
+                }
+            }
+        });
+
+        bottomNavigation.setOnReselectListener(new chetanBottomNavigation.ReselectListener() {
+            @Override
+            public void onReselectItem(chetanBottomNavigation.Model item) {
+                Toast.makeText(MainActivity.this,"Opcion de nuevo", Toast.LENGTH_SHORT);
+            }
+        });
+
+        bottomNavigation.setOnClickMenuListener(new chetanBottomNavigation.ClickListener() {
+            @Override
+            public void onClickItem(chetanBottomNavigation.Model item) {
+                Toast.makeText(MainActivity.this,"Opcion seleccionada", Toast.LENGTH_SHORT);
+            }
+        });
+
+        bottomNavigation.show(scanner, true);
+        bottomNavigation.show(profile,true);
+        bottomNavigation.show(day,true);
+        bottomNavigation.show(noti, true);
+        bottomNavigation.show(info, true);
+
+        //Get Data from LoginActivity
         Bundle extras = getIntent().getExtras();
         String userName;
 
