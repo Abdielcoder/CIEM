@@ -29,10 +29,9 @@ import org.json.JSONObject;
 import java.util.HashMap;
 import java.util.Map;
 import android.os.Handler;
-
-import android.os.Bundle;
-import android.view.View;
 import android.widget.RelativeLayout;
+import pro.abdiel.ciem.utils.Dialogo;
+
 public class LoginActivity extends AppCompatActivity {
 
     RelativeLayout rellay1, rellay2;
@@ -57,50 +56,36 @@ public class LoginActivity extends AppCompatActivity {
     private String delegacionId;
     private String activo;
     private String usersId;
-    private AlertDialog.Builder dialogo;
+    private Dialogo dialogo;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        //Dialogo.
+        //Dialog.
+        dialogo = new Dialogo();
 
-        dialogo=new AlertDialog.Builder(LoginActivity.this);
-        dialogo.setTitle("MENSAJE DEL THOR");
-        dialogo.setMessage("Debes ser Inspector para poder ingresar...");
-        dialogo.setPositiveButton("Aceptar", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialogInterface, int i) {
-
-            }
-        });
-
-        //Ocultanos e action bar9
-        //getSupportActionBar().hide();-
+        //View
         setContentView(R.layout.activity_login);
         String URL = getString(R.string.app_url_login);
-
         rellay1 = (RelativeLayout) findViewById(R.id.rellay1);
         rellay2 = (RelativeLayout) findViewById(R.id.rellay2);
-
         handler.postDelayed(runnable, 2000); //2000 is the timeo
-
-        //Llamamos a los objetos que estan en la vista XML por su ID
         edtUser = findViewById(R.id.edtUser);
         edtPassword = findViewById(R.id.edtPassword);
         btnLogin = findViewById(R.id.btnLogin);
+
+        //Ger store User
         sp = getSharedPreferences("credenciales",Context.MODE_PRIVATE);
         Log.d("tag","$$$$$$$$$$$$$$$$$$$$$"+sp.toString());
 
-        //Del Logout
+
         Bundle bundle  = getIntent().getExtras();
 
-        //Validamos que no venga vacio
+        //Validate inputs no empty
         if (bundle != null) {
 
             String userOut  = bundle.getString("userOut");
             String passOut  = bundle.getString("passOut");
-
-
             edtUser.setText(userOut);
             edtPassword.setText(passOut);
         }else{
@@ -113,23 +98,21 @@ public class LoginActivity extends AppCompatActivity {
             validarUsuario(URL);*/
         }
 
-        //Metodo para disparar la validacion de usuario.
+
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-                validarUsuario(URL);
-
+                LoginUser(URL);
             }
         });
 
     }
 
-    private void validarUsuario(String URL){
+    //WS LOGIN USER
+    private void LoginUser(String URL){
         StringRequest stringRequest = new StringRequest(Request.Method.POST, URL, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
-                //Validamos que el response no este vacio
                 if(!response.isEmpty()){
 
                     try {
@@ -173,13 +156,7 @@ public class LoginActivity extends AppCompatActivity {
                         edtUser.setText(usuario);
                         edtPassword.setText(pass);
                         editor.commit();
-                      /*  if(profile.equals("inspector")){
 
-                            //Toast.makeText(MainActivity.this,"BIENVENIDO A THOR",Toast.LENGTH_LONG).show();
-                        }else{
-                            dialogo.show();
-
-                        }*/
                         startActivity(intent);
                         finish();
 
@@ -189,7 +166,8 @@ public class LoginActivity extends AppCompatActivity {
                     }
                 }else{
 
-                   // Toast.makeText(LoginActivity.this,"DATOS INCORRECTOS",Toast.LENGTH_LONG).show();
+                   Toast.makeText(LoginActivity.this,"DATOS INCORRECTOS",Toast.LENGTH_LONG).show();
+                   dialogo.Mensaje(LoginActivity.this, "Los datos son incorrectos, revisa tu Usuario o Contraseña para continuar." );
                 }
             }
         }, new Response.ErrorListener() {
@@ -210,5 +188,4 @@ public class LoginActivity extends AppCompatActivity {
         RequestQueue requesrQueue   = Volley.newRequestQueue(this);
         requesrQueue.add(stringRequest);
     }
-
 }
