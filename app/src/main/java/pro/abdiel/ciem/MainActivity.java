@@ -4,6 +4,8 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 
 import android.Manifest;
 import android.content.Intent;
@@ -34,6 +36,13 @@ import java.util.Date;
 import java.util.Hashtable;
 import java.util.Map;
 
+import pro.abdiel.ciem.Fragments.InfoFragment;
+import pro.abdiel.ciem.Fragments.MainFragment;
+import pro.abdiel.ciem.Fragments.NotificationFragment;
+import pro.abdiel.ciem.Fragments.ProfileFragment;
+import pro.abdiel.ciem.Fragments.ReportFragment;
+import pro.abdiel.ciem.Fragments.ScannerFragment;
+
 public class MainActivity extends AppCompatActivity {
     //Scanner
     private CodeScanner mCodeScanner;
@@ -52,6 +61,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
 
         //Scanner Logic
         CodeScannerView scannerView = findViewById(R.id.scanner_view);
@@ -81,9 +91,8 @@ public class MainActivity extends AppCompatActivity {
                 PackageManager.PERMISSION_GRANTED) {
             ActivityCompat.requestPermissions(this, new String[] {Manifest.permission.CAMERA},
                     50);
-        }
+        };
 
-      ;
         //Adding custom icons
         bottomNavigation = findViewById(R.id.bottomNavigation);
         bottomNavigation.add(new chetanBottomNavigation.Model(scanner,R.drawable.qr_black_24));
@@ -100,25 +109,32 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onShowItem(chetanBottomNavigation.Model item) {
                 String name;
+                String  fragment;
+                Fragment selectedFragment = null;
                 switch (item.getId()){
                     case scanner:
-                    name = "SCANNER";
+                        name = "SCANNER";
+
                     break;
 
                     case profile:
                         name = "PERFIL";
+                        selectedFragment = new ProfileFragment();
                         break;
 
                     case day:
                         name = "DIA";
+
                         break;
 
                     case noti:
                         name = "NOTIFICACION";
+
                         break;
 
                     case info:
                         name = "INFORMACION";
+
                         break;
 
                 }
@@ -136,14 +152,43 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClickItem(chetanBottomNavigation.Model item) {
                 Toast.makeText(MainActivity.this,"Opcion seleccionada", Toast.LENGTH_SHORT);
+                String  fragment;
+                switch (item.getId()){
+                    case scanner:
+                        fragment = "SCANNER";
+                        Intent intent = new Intent(MainActivity.this,MainActivity.class);
+                        startActivity(intent);
+                        finish();
+                        break;
+
+                    case profile:
+                        fragment = "PERFIL";
+                        replace(new ProfileFragment());
+                        break;
+
+                    case day:
+                        fragment = "DIA";
+                        replace(new ReportFragment());
+                        break;
+
+                    case noti:
+                        fragment = "NOTIFICACION";
+                        replace(new NotificationFragment());
+                        break;
+
+                    case info:
+                        fragment = "INFORMACION";
+                        replace(new InfoFragment());
+                        break;
+
+                }
+
             }
         });
 
-        bottomNavigation.show(scanner, true);
-        bottomNavigation.show(profile,true);
-        bottomNavigation.show(day,true);
-        bottomNavigation.show(noti, true);
-        bottomNavigation.show(info, true);
+
+        bottomNavigation.show(scanner,true);
+
 
         //Get Data from LoginActivity
         Bundle extras = getIntent().getExtras();
@@ -231,5 +276,11 @@ public class MainActivity extends AppCompatActivity {
         requestQueue.add(stringRequest);
     }
 
+
+    private void replace(Fragment fragment) {
+        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+        transaction.replace(R.id.frameLayout,fragment);
+        transaction.commit();
+    }
 
 }
