@@ -1,4 +1,4 @@
-package pro.abdiel.ciem;
+package pro.abdiel.ciem.Activities;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -10,9 +10,7 @@ import androidx.fragment.app.FragmentTransaction;
 import android.Manifest;
 import android.content.Intent;
 import android.content.pm.PackageManager;
-import android.graphics.Bitmap;
 import android.os.Bundle;
-import android.util.Base64;
 import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
@@ -30,18 +28,14 @@ import com.budiyev.android.codescanner.DecodeCallback;
 import com.google.zxing.Result;
 import com.sagarkoli.chetanbottomnavigation.chetanBottomNavigation;
 
-import java.io.ByteArrayOutputStream;
-import java.util.Calendar;
-import java.util.Date;
 import java.util.Hashtable;
 import java.util.Map;
 
 import pro.abdiel.ciem.Fragments.InfoFragment;
-import pro.abdiel.ciem.Fragments.MainFragment;
 import pro.abdiel.ciem.Fragments.NotificationFragment;
 import pro.abdiel.ciem.Fragments.ProfileFragment;
 import pro.abdiel.ciem.Fragments.ReportFragment;
-import pro.abdiel.ciem.Fragments.ScannerFragment;
+import pro.abdiel.ciem.R;
 
 public class MainActivity extends AppCompatActivity {
     //Scanner

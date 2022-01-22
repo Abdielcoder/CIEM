@@ -1,17 +1,12 @@
-package pro.abdiel.ciem;
+package pro.abdiel.ciem.Activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 
-import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.app.AppCompatActivity;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.content.pm.ActivityInfo;
-import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -30,6 +25,8 @@ import java.util.HashMap;
 import java.util.Map;
 import android.os.Handler;
 import android.widget.RelativeLayout;
+
+import pro.abdiel.ciem.R;
 import pro.abdiel.ciem.utils.Dialogo;
 
 public class LoginActivity extends AppCompatActivity {

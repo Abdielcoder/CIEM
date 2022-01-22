@@ -5,8 +5,6 @@ import android.content.DialogInterface;
 
 import androidx.appcompat.app.AlertDialog;
 
-import pro.abdiel.ciem.LoginActivity;
-
 public class Dialogo {
     private AlertDialog.Builder dialogo;
 
