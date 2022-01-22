@@ -57,16 +57,18 @@ public class NotificationFragment extends Fragment {
     private List<ModelNotifications> initData() {
 
         itemList=new ArrayList<>();
-        itemList.add(new ModelNotifications(R.drawable.mensaje,"video 1"));
-        itemList.add(new ModelNotifications(R.drawable.mensaje,"video 1"));
-        itemList.add(new ModelNotifications(R.drawable.mensaje,"video 1"));
-        itemList.add(new ModelNotifications(R.drawable.mensaje,"video 1"));
-        itemList.add(new ModelNotifications(R.drawable.mensaje,"video 1"));
-        itemList.add(new ModelNotifications(R.drawable.mensaje,"video 1"));
-        itemList.add(new ModelNotifications(R.drawable.mensaje,"video 1"));
-        itemList.add(new ModelNotifications(R.drawable.mensaje,"video 1"));
-        itemList.add(new ModelNotifications(R.drawable.mensaje,"video 1"));
-
+        itemList.add(new ModelNotifications(R.drawable.mensaje,"Fuera de Ruta.","Por favor regresa a tu ruta..."));
+        itemList.add(new ModelNotifications(R.drawable.mensaje,"Cambio de Camion","Porfavor tomas unidad..."));
+        itemList.add(new ModelNotifications(R.drawable.mensaje,"Chequeo Mecanico ","Acudir a ofinas para..."));
+        itemList.add(new ModelNotifications(R.drawable.mensaje,"Cambio de horario","Se notifica que apartir..."));
+        itemList.add(new ModelNotifications(R.drawable.mensaje,"Renovacion de Contrato","Favor de acudir con RH..."));
+        itemList.add(new ModelNotifications(R.drawable.mensaje,"Exceo de Velocidad","Porfavor manejar de manera correcta..."));
+        itemList.add(new ModelNotifications(R.drawable.mensaje,"Renovacion de Contrato","Favor de acudir con RH..."));
+        itemList.add(new ModelNotifications(R.drawable.mensaje,"Chequeo Mecanico ","Acudir a ofinas para..."));
+        itemList.add(new ModelNotifications(R.drawable.mensaje,"Fuera de Ruta.","Por favor regresa a tu ruta..."));
+        itemList.add(new ModelNotifications(R.drawable.mensaje,"Cambio de Camion","Porfavor tomas unidad..."));
+        itemList.add(new ModelNotifications(R.drawable.mensaje,"Cambio de horario","Se notifica que apartir..."));
+        itemList.add(new ModelNotifications(R.drawable.mensaje,"Chequeo Mecanico ","Acudir a ofinas para..."));
         return itemList;
     }
 }

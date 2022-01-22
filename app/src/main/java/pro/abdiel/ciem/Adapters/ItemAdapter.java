@@ -45,7 +45,8 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ViewHolder> {
     public void onBindViewHolder(@NonNull ItemAdapter.ViewHolder holder, final int position) {
 
         holder.itemImage.setImageResource(itemList1.get(position).getImage());
-        holder.itemtxt.setText(itemList1.get(position).getName());
+        holder.itemSubject.setText(itemList1.get(position).getName());
+        holder.itemMessage.setText(itemList1.get(position).getName());
 
 
     }
@@ -58,7 +59,8 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ViewHolder> {
     public class ViewHolder extends RecyclerView.ViewHolder {
 
         ImageView itemImage;
-        TextView itemtxt;
+        TextView itemSubject;
+        TextView itemMessage;
         LinearLayout linearLayout;
 
 
@@ -66,8 +68,9 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ViewHolder> {
             super(itemView);
 
             itemImage=itemView.findViewById(R.id.itemImg);
-            itemtxt=itemView.findViewById(R.id.itemName);
-            linearLayout=itemView.findViewById(R.id.layout_id);
+            itemSubject=itemView.findViewById(R.id.itemSubject);
+            itemMessage=itemView.findViewById(R.id.itemMenssage);
+            linearLayout=itemView.findViewById(R.id.vertical_linnear);
 
         }
     }

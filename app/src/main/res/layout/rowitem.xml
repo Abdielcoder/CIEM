@@ -5,28 +5,50 @@
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:id="@+id/layout_id">
-
-            <ImageView
-                android:layout_width="match_parent"
-                android:layout_height="230dp"
-                android:id="@+id/itemImg"
-                android:src="@drawable/ic_launcher_background"/>
-
-            <TextView
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/itemName"
-                android:text="name"
-                android:gravity="center"
-                android:layout_marginTop="2dp"
-                android:textStyle="bold"
-                android:textSize="22dp"/>
+                android:background="@color/white"
+                android:orientation="horizontal"
+                android:layout_marginBottom="5dp"
+                android:id="@+id/horizontal_linnear">
+                    <ImageView
+                        android:layout_width="70dp"
+                        android:layout_height="70dp"
+                        android:id="@+id/itemImg"
+                        android:src="@drawable/ic_launcher_background"/>
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            android:id="@+id/vertical_linnear">
 
-        </LinearLayout>
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:id="@+id/itemSubject"
+                                android:text="Cambio de ruta"
+                                android:textColor="@color/purple_700"
+                                android:gravity="left"
+                                android:layout_marginTop="2dp"
+                                android:layout_marginLeft="5dp"
+                                android:textStyle="bold"
+                                android:textSize="20dp"/>
+
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:id="@+id/itemMenssage"
+                                android:text="Nueva ruta asignada"
+                                android:textColor="@color/followers"
+                                android:gravity="left"
+                                android:layout_marginTop="0dp"
+                                android:layout_marginLeft="5dp"
+                                android:textStyle="bold"
+                                android:textSize="15dp"/>
+
+                         </LinearLayout>
+            </LinearLayout>
     </androidx.cardview.widget.CardView>
 </RelativeLayout>
