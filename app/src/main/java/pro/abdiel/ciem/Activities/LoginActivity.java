@@ -63,6 +63,7 @@ public class LoginActivity extends AppCompatActivity {
 
         //View
         setContentView(R.layout.activity_login);
+
         String URL = getString(R.string.app_url_login);
         rellay1 = (RelativeLayout) findViewById(R.id.rellay1);
         rellay2 = (RelativeLayout) findViewById(R.id.rellay2);
@@ -70,7 +71,8 @@ public class LoginActivity extends AppCompatActivity {
         edtUser = findViewById(R.id.edtUser);
         edtPassword = findViewById(R.id.edtPassword);
         btnLogin = findViewById(R.id.btnLogin);
-
+        edtUser.setText("CALFIA1301");
+        edtPassword.setText("123");
         //Ger store User
         sp = getSharedPreferences("credenciales",Context.MODE_PRIVATE);
         Log.d("tag","$$$$$$$$$$$$$$$$$$$$$"+sp.toString());
@@ -83,8 +85,10 @@ public class LoginActivity extends AppCompatActivity {
 
             String userOut  = bundle.getString("userOut");
             String passOut  = bundle.getString("passOut");
-            edtUser.setText(userOut);
-            edtPassword.setText(passOut);
+           /* edtUser.setText(userOut);
+            edtPassword.setText(passOut);*/
+            edtUser.setText("CALFIA1301");
+            edtPassword.setText("123");
         }else{
             /*sp.edit().putBoolean("logged",true).apply();
             SharedPreferences preferences = getSharedPreferences("credenciales",Context.MODE_PRIVATE);
@@ -150,8 +154,8 @@ public class LoginActivity extends AppCompatActivity {
                         editor.putString("miUsuario",usuario);
                         editor.putString("miPassword",pass);
 
-                        edtUser.setText(usuario);
-                        edtPassword.setText(pass);
+                        edtUser.setText("CALFIA1301");
+                        edtPassword.setText("123");
                         editor.commit();
 
                         startActivity(intent);
