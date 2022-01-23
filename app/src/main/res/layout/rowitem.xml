@@ -1,56 +1,59 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-
+    android:background="@drawable/shape"
     android:layout_width="match_parent" android:layout_height="wrap_content">
 
     <androidx.cardview.widget.CardView
-
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:id="@+id/horizontal_linnear"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/itemImg"
+                android:layout_width="70dp"
+                android:layout_height="70dp"
+                android:src="@drawable/messaging" />
+
             <LinearLayout
+                android:id="@+id/vertical_linnear"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@drawable/shape"
-                android:orientation="horizontal"
+                android:orientation="vertical">
 
-                android:id="@+id/horizontal_linnear">
-                    <ImageView
-                        android:layout_width="70dp"
-                        android:layout_height="70dp"
-                        android:id="@+id/itemImg"
-                        android:src="@drawable/messaging"/>
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:orientation="vertical"
-                            android:id="@+id/vertical_linnear">
-
-                            <TextView
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:id="@+id/itemSubject"
-                                android:text="Cambio de ruta"
-                                android:textColor="@color/purple_700"
-                                android:gravity="left"
-                                android:layout_marginTop="2dp"
-                                android:layout_marginLeft="5dp"
-                                android:textStyle="bold"
-                                android:textSize="20dp"/>
+                <TextView
+                    android:id="@+id/itemSubject"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginTop="2dp"
+                    android:gravity="left"
+                    android:text="Cambio de ruta"
+                    android:fontFamily="@font/chakra_semi_bold"
+                    android:textColor="@color/purple_700"
+                    android:textSize="20dp"
+                    android:textStyle="bold" />
 
 
-                            <TextView
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:id="@+id/itemMenssage"
-                                android:text="Nueva ruta asignada"
-                                android:textColor="@color/followers"
-                                android:gravity="left"
-                                android:layout_marginTop="0dp"
-                                android:layout_marginLeft="5dp"
-                                android:textStyle="bold"
-                                android:textSize="15dp"/>
+                <TextView
+                    android:id="@+id/itemMenssage"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginTop="0dp"
+                    android:gravity="left"
+                    android:text="Nueva ruta asignada"
+                    android:fontFamily="@font/chakra_ligth"
+                    android:textColor="@color/followers"
+                    android:textSize="15dp"
+                    android:textStyle="bold" />
 
-                         </LinearLayout>
             </LinearLayout>
+        </LinearLayout>
     </androidx.cardview.widget.CardView>
 </RelativeLayout>

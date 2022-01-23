@@ -29,7 +29,6 @@ public class NotificationFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view=inflater.inflate(R.layout.fragment_notification, container, false);
-
         recyclerView=view.findViewById(R.id.recyclerNotification);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
@@ -51,9 +50,8 @@ public class NotificationFragment extends Fragment {
         itemList.add(new ModelNotifications(R.drawable.messaging,"Renovacion de Contrato","Favor de acudir con RH..."));
         itemList.add(new ModelNotifications(R.drawable.messaging,"Chequeo Mecanico ","Acudir a ofinas para..."));
         itemList.add(new ModelNotifications(R.drawable.messaging,"Fuera de Ruta.","Por favor regresa a tu ruta..."));
-        itemList.add(new ModelNotifications(R.drawable.messaging,"Cambio de Camion","Porfavor tomas unidad..."));
-        itemList.add(new ModelNotifications(R.drawable.messaging,"Cambio de horario","Se notifica que apartir..."));
-        itemList.add(new ModelNotifications(R.drawable.messaging,"Chequeo Mecanico ","Acudir a ofinas para..."));
+       
+
         return itemList;
     }
 }
