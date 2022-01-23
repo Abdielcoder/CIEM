@@ -50,7 +50,7 @@ public class NotificationFragment extends Fragment {
         itemList.add(new ModelNotifications(R.drawable.messaging,"Renovacion de Contrato","Favor de acudir con RH..."));
         itemList.add(new ModelNotifications(R.drawable.messaging,"Chequeo Mecanico ","Acudir a ofinas para..."));
         itemList.add(new ModelNotifications(R.drawable.messaging,"Fuera de Ruta.","Por favor regresa a tu ruta..."));
-       
+
 
         return itemList;
     }

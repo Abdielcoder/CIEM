@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:background="@drawable/shape"
     android:layout_width="match_parent" android:layout_height="wrap_content">
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
+        android:layout_marginBottom="2dp"
         android:layout_height="wrap_content">
 
         <LinearLayout
@@ -16,8 +16,10 @@
 
             <ImageView
                 android:id="@+id/itemImg"
-                android:layout_width="70dp"
-                android:layout_height="70dp"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_gravity="center"
+                android:layout_marginLeft="15dp"
                 android:src="@drawable/messaging" />
 
             <LinearLayout
@@ -30,7 +32,7 @@
                     android:id="@+id/itemSubject"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="5dp"
+                    android:layout_marginLeft="15dp"
                     android:layout_marginTop="2dp"
                     android:gravity="left"
                     android:text="Cambio de ruta"
@@ -44,7 +46,7 @@
                     android:id="@+id/itemMenssage"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="5dp"
+                    android:layout_marginLeft="15dp"
                     android:layout_marginTop="0dp"
                     android:gravity="left"
                     android:text="Nueva ruta asignada"

@@ -20,7 +20,7 @@
         <entry key="app/src/main/res/layout/fragment_profile.xml" value="0.25" />
         <entry key="app/src/main/res/layout/fragment_report.xml" value="0.1796875" />
         <entry key="app/src/main/res/layout/fragment_scanner.xml" value="0.1796875" />
-        <entry key="app/src/main/res/layout/rowitem.xml" value="0.5" />
+        <entry key="app/src/main/res/layout/rowitem.xml" value="0.25" />
         <entry key="app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.19635416666666666" />
         <entry key="app/src/main/res/xml/network_security_config.xml" value="0.21822916666666667" />
       </map>
