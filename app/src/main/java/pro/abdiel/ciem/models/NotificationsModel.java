@@ -1,11 +1,11 @@
 package pro.abdiel.ciem.models;
 
-public class ModelNotifications {
+public class NotificationsModel {
     int Image;
     String name;
     String message;
 
-    public ModelNotifications(int image, String name, String message) {
+    public NotificationsModel(int image, String name, String message) {
         Image = image;
         this.name = name;
         this.message = message;

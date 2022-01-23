@@ -12,13 +12,13 @@ import java.util.ArrayList;
 import java.util.List;
 import pro.abdiel.ciem.Adapters.ItemAdapter;
 import pro.abdiel.ciem.R;
-import pro.abdiel.ciem.models.ModelNotifications;
+import pro.abdiel.ciem.models.NotificationsModel;
 
 
 public class NotificationFragment extends Fragment {
 
     RecyclerView recyclerView;
-    List<ModelNotifications> itemList;
+    List<NotificationsModel> itemList;
 
     public NotificationFragment() {
         // Required empty public constructor
@@ -38,18 +38,18 @@ public class NotificationFragment extends Fragment {
         return view;
     }
 
-    private List<ModelNotifications> initData() {
+    private List<NotificationsModel> initData() {
 
         itemList=new ArrayList<>();
-        itemList.add(new ModelNotifications(R.drawable.messaging,"Fuera de Ruta.","Por favor regresa a tu ruta..."));
-        itemList.add(new ModelNotifications(R.drawable.messaging,"Cambio de Camion","Porfavor tomas unidad..."));
-        itemList.add(new ModelNotifications(R.drawable.messaging,"Chequeo Mecanico ","Acudir a ofinas para..."));
-        itemList.add(new ModelNotifications(R.drawable.messaging,"Cambio de horario","Se notifica que apartir..."));
-        itemList.add(new ModelNotifications(R.drawable.messaging,"Renovacion de Contrato","Favor de acudir con RH..."));
-        itemList.add(new ModelNotifications(R.drawable.messaging,"Exceo de Velocidad","Porfavor manejar de manera correcta..."));
-        itemList.add(new ModelNotifications(R.drawable.messaging,"Renovacion de Contrato","Favor de acudir con RH..."));
-        itemList.add(new ModelNotifications(R.drawable.messaging,"Chequeo Mecanico ","Acudir a ofinas para..."));
-        itemList.add(new ModelNotifications(R.drawable.messaging,"Fuera de Ruta.","Por favor regresa a tu ruta..."));
+        itemList.add(new NotificationsModel(R.drawable.messaging,"Fuera de Ruta.","Por favor regresa a tu ruta..."));
+        itemList.add(new NotificationsModel(R.drawable.messaging,"Cambio de Camion","Porfavor tomas unidad..."));
+        itemList.add(new NotificationsModel(R.drawable.messaging,"Chequeo Mecanico ","Acudir a ofinas para..."));
+        itemList.add(new NotificationsModel(R.drawable.messaging,"Cambio de horario","Se notifica que apartir..."));
+        itemList.add(new NotificationsModel(R.drawable.messaging,"Renovacion de Contrato","Favor de acudir con RH..."));
+        itemList.add(new NotificationsModel(R.drawable.messaging,"Exceo de Velocidad","Porfavor manejar de manera correcta..."));
+        itemList.add(new NotificationsModel(R.drawable.messaging,"Renovacion de Contrato","Favor de acudir con RH..."));
+        itemList.add(new NotificationsModel(R.drawable.messaging,"Chequeo Mecanico ","Acudir a ofinas para..."));
+        itemList.add(new NotificationsModel(R.drawable.messaging,"Fuera de Ruta.","Por favor regresa a tu ruta..."));
 
 
         return itemList;

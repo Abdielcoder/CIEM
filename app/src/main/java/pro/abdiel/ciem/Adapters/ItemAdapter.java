@@ -11,14 +11,14 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 import java.util.List;
 import pro.abdiel.ciem.R;
-import pro.abdiel.ciem.models.ModelNotifications;
+import pro.abdiel.ciem.models.NotificationsModel;
 
 public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ViewHolder> {
 
-    List<ModelNotifications> itemList1;
+    List<NotificationsModel> itemList1;
     private Context context;
 
-    public ItemAdapter(List<ModelNotifications> itemList,Context context) {
+    public ItemAdapter(List<NotificationsModel> itemList, Context context) {
         this.itemList1=itemList;
         this.context=context;
 
@@ -27,7 +27,7 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ViewHolder> {
     @NonNull
     @Override
     public ItemAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view= LayoutInflater.from(parent.getContext()).inflate(R.layout.rowitem,parent,false);
+        View view= LayoutInflater.from(parent.getContext()).inflate(R.layout.message_notfications,parent,false);
         ViewHolder viewHolder=new ViewHolder(view);
         return viewHolder;
     }
