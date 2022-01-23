@@ -1,23 +1,15 @@
 package pro.abdiel.ciem.Adapters;
 
 import android.content.Context;
-import android.content.Intent;
-import android.media.Image;
-import android.view.Display;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
-
 import java.util.List;
-
-import static android.content.Intent.FLAG_ACTIVITY_NEW_TASK;
-
 import pro.abdiel.ciem.R;
 import pro.abdiel.ciem.models.ModelNotifications;
 
@@ -27,7 +19,6 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ViewHolder> {
     private Context context;
 
     public ItemAdapter(List<ModelNotifications> itemList,Context context) {
-
         this.itemList1=itemList;
         this.context=context;
 
@@ -46,7 +37,7 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ViewHolder> {
 
         holder.itemImage.setImageResource(itemList1.get(position).getImage());
         holder.itemSubject.setText(itemList1.get(position).getName());
-        holder.itemMessage.setText(itemList1.get(position).getName());
+        holder.itemMessage.setText(itemList1.get(position).getMessage());
 
 
     }
