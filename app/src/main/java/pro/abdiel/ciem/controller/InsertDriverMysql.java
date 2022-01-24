@@ -3,10 +3,6 @@ package pro.abdiel.ciem.controller;
 import android.content.Context;
 import android.util.Log;
 import android.widget.Toast;
-
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentTransaction;
-
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -14,11 +10,8 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
-
 import java.util.Hashtable;
 import java.util.Map;
-
-import pro.abdiel.ciem.Activities.MainActivity;
 import pro.abdiel.ciem.R;
 
 public class InsertDriverMysql {
@@ -26,8 +19,7 @@ public class InsertDriverMysql {
     public InsertDriverMysql() {
     }
 
-
-    //Subir imagen
+    //UPLOAD TO MYSQL
     public void uploadTrabajador(Context context,String profileUser,String clienteID, String usersId, String delegacionId,
                                  String username, String credentialCode) {//realiza_todo
         UPLOAD_URL = context.getString(R.string.app_upload);
@@ -74,7 +66,6 @@ public class InsertDriverMysql {
 
 
         };
-
 
         RequestQueue requestQueue = Volley.newRequestQueue(context.getApplicationContext());
         requestQueue.add(stringRequest);

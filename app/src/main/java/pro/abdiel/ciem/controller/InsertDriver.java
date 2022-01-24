@@ -17,7 +17,7 @@ public class InsertDriver {
     }
 
     public void addDriver(String profile,String usersId,
-                          String delegacionId,String username,String password){
+                          String delegacionId,String username){
 
         // Create a new user with a first and last name
         Map<String, Object> user = new HashMap<>();
@@ -25,7 +25,7 @@ public class InsertDriver {
         user.put("usersId", usersId);
         user.put("delegacionId",delegacionId);
         user.put("username", username);
-        user.put("password", password);
+
 
 
 

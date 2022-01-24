@@ -2,8 +2,11 @@ package pro.abdiel.ciem.Activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.os.Bundle;
 
+import android.app.Dialog;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
+import android.os.Bundle;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -11,6 +14,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Toast;
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
@@ -35,7 +39,6 @@ import pro.abdiel.ciem.utils.Dialogo;
 public class LoginActivity extends AppCompatActivity {
 
     RelativeLayout rellay1, rellay2;
-
     Handler handler = new Handler();
     Runnable runnable = new Runnable() {
         @Override
@@ -57,17 +60,19 @@ public class LoginActivity extends AppCompatActivity {
     private String activo;
     private String clienteID;
     private String usersId;
-    private Dialogo dialogo;
+   // private Dialogo dialogo;
+    private Dialog dialog;
+   /* private Context context;*/
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         Logger.addLogAdapter(new AndroidLogAdapter());
         //Dialog.
-        dialogo = new Dialogo();
-
+       // dialogo = new Dialogo();
+        dialog = new Dialog(this);
         //View
         setContentView(R.layout.activity_login);
-
+        Logger.d("ON CREATE...");
         String URL = getString(R.string.app_url_login);
         rellay1 = (RelativeLayout) findViewById(R.id.rellay1);
         rellay2 = (RelativeLayout) findViewById(R.id.rellay2);
@@ -107,6 +112,7 @@ public class LoginActivity extends AppCompatActivity {
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Logger.d("I AM HERE...");
                 LoginUser(URL);
             }
         });
@@ -126,19 +132,19 @@ public class LoginActivity extends AppCompatActivity {
                         Logger.json(obj.toString());
                         Logger.d(usersId);
                         username = obj.getString("username");
-                        password = obj.getString("password");
+                       // password = obj.getString("password");
                         profile = obj.getString("profile");
-                        nombre = obj.getString("comment");
+                       // nombre = obj.getString("comment");
                         delegacionId = obj.getString("delegacionID");
-                        activo = obj.getString("Activo");
+                        //activo = obj.getString("Activo");
                         clienteID = obj.getString("clienteID");
 
                         Logger.d(username);
-                        Logger.d(password);
+                       // Logger.d(password);
                         Logger.d(profile);
-                        Logger.d(nombre);
+                        //Logger.d(nombre);
                         Logger.d(delegacionId);
-                        Logger.d(activo);
+                       // Logger.d(activo);
                         Logger.d(clienteID);
 
 
@@ -147,12 +153,12 @@ public class LoginActivity extends AppCompatActivity {
                         intent.putExtra("usersId",usersId);
                         Logger.d(usersId);
                         intent.putExtra("username",username);
-                        intent.putExtra("password",password);
+                       // intent.putExtra("password",password);
                         intent.putExtra("profile",profile);
-                        intent.putExtra("nombre",nombre);
+                       // intent.putExtra("nombre",nombre);
                         intent.putExtra("delegacionId",delegacionId);
                         intent.putExtra("clienteID",clienteID);
-                        intent.putExtra("activo",activo);
+                        //intent.putExtra("activo",activo);
 
                         SharedPreferences preferences = getSharedPreferences("credenciales", Context.MODE_PRIVATE);
                         String usuario = username;
@@ -171,13 +177,15 @@ public class LoginActivity extends AppCompatActivity {
                         finish();
 
                     } catch (JSONException e) {
-                        Log.d("error_usuario",""+e);
+                        Log.d("error_usuario..",""+e);
                         e.printStackTrace();
+                        dialogClose();
                     }
                 }else{
 
                    Toast.makeText(LoginActivity.this,"DATOS INCORRECTOS",Toast.LENGTH_LONG).show();
-                   dialogo.Mensaje(LoginActivity.this, "Los datos son incorrectos, revisa tu Usuario o Contraseña para continuar." );
+                  // dialogo.Mensaje(LoginActivity.this, "Los datos son incorrectos, revisa tu Usuario o Contraseña para continuar." );
+                    dialogClose();
                 }
             }
         }, new Response.ErrorListener() {
@@ -197,5 +205,29 @@ public class LoginActivity extends AppCompatActivity {
         };
         RequestQueue requesrQueue   = Volley.newRequestQueue(this);
         requesrQueue.add(stringRequest);
+    }
+
+    private void dialogClose()
+    {
+       dialog.setContentView(R.layout.validate_user_layout);
+                   dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+                   ImageView imageViewClose=dialog.findViewById(R.id.imageViewClose);
+                   Button btn_close_dialog=dialog.findViewById(R.id.btn_close_dialog);
+
+                   imageViewClose.setOnClickListener(new View.OnClickListener() {
+                       @Override
+                       public void onClick(View view) {
+                           dialog.dismiss();
+                       }
+                   });
+
+                   btn_close_dialog.setOnClickListener(new View.OnClickListener() {
+                       @Override
+                       public void onClick(View view) {
+                           dialog.dismiss();
+                       }
+                   });
+
+                   dialog.show();
     }
 }

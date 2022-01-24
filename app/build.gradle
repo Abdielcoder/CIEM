@@ -45,15 +45,16 @@ dependencies {
     //BOTTOM NAV BAR
     implementation 'com.github.chetankoli1.BottomNavigation:chetanbottomnavigation:0.0.3'
     //ANIMATIONS
-    implementation "com.airbnb.android:lottie:4.2.2"
+    implementation 'com.airbnb.android:lottie:4.2.2'
     //CIRCLE IMAGE
-    implementation "de.hdodenhof:circleimageview:3.1.0"
+    implementation 'de.hdodenhof:circleimageview:3.1.0'
     //FIREBASE
     implementation platform('com.google.firebase:firebase-bom:29.0.4')
     implementation 'com.google.firebase:firebase-analytics'
     implementation 'com.google.firebase:firebase-firestore:23.0.4'
-
     //LOGCAT
     implementation 'com.orhanobut:logger:2.2.0'
+    //CUSTOM DIALOGS
+    implementation 'com.google.android.material:material:1.0.0'
 }
 

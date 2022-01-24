@@ -10,26 +10,15 @@ import android.Manifest;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
-import com.android.volley.AuthFailureError;
-import com.android.volley.Request;
-import com.android.volley.RequestQueue;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
-import com.android.volley.toolbox.StringRequest;
-import com.android.volley.toolbox.Volley;
 import com.budiyev.android.codescanner.CodeScanner;
 import com.budiyev.android.codescanner.CodeScannerView;
 import com.budiyev.android.codescanner.DecodeCallback;
-import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.zxing.Result;
 import com.orhanobut.logger.AndroidLogAdapter;
 import com.orhanobut.logger.Logger;
 import com.sagarkoli.chetanbottomnavigation.chetanBottomNavigation;
-import java.util.Hashtable;
-import java.util.Map;
 import pro.abdiel.ciem.Fragments.InfoFragment;
 import pro.abdiel.ciem.Fragments.NotificationFragment;
 import pro.abdiel.ciem.Fragments.ProfileFragment;
@@ -207,17 +196,17 @@ public class MainActivity extends AppCompatActivity {
 
         if (extras != null) {
             username = extras.getString("username");
-            password = extras.getString("password");
+           // password = extras.getString("password");
             profileUser = extras.getString("profile");
-            nombre = extras.getString("nombre");
+           // nombre = extras.getString("nombre");
             delegacionId = extras.getString("delegacionId");
-            activo = extras.getString("activo");
+           // activo = extras.getString("activo");
             usersId = extras.getString("usersId");
             clienteID = extras.getString("clienteID");
 
-            String passwordMd5 = md5.MD5(password);
-            Logger.d(passwordMd5);
-            insertaDriver.addDriver(profileUser,usersId,delegacionId,username,passwordMd5);
+           // String passwordMd5 = md5.MD5(password);
+          //  Logger.d(passwordMd5);
+            insertaDriver.addDriver(profileUser,usersId,delegacionId,username);
         }
 
 
