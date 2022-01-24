@@ -26,6 +26,8 @@ import com.budiyev.android.codescanner.CodeScanner;
 import com.budiyev.android.codescanner.CodeScannerView;
 import com.budiyev.android.codescanner.DecodeCallback;
 import com.google.zxing.Result;
+import com.orhanobut.logger.AndroidLogAdapter;
+import com.orhanobut.logger.Logger;
 import com.sagarkoli.chetanbottomnavigation.chetanBottomNavigation;
 
 import java.util.Hashtable;
@@ -55,7 +57,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
+        Logger.addLogAdapter(new AndroidLogAdapter());
 
         //Scanner Logic
         CodeScannerView scannerView = findViewById(R.id.scanner_view);
@@ -138,7 +140,7 @@ public class MainActivity extends AppCompatActivity {
         bottomNavigation.setOnReselectListener(new chetanBottomNavigation.ReselectListener() {
             @Override
             public void onReselectItem(chetanBottomNavigation.Model item) {
-                Toast.makeText(MainActivity.this,"Opcion de nuevo", Toast.LENGTH_SHORT);
+
             }
         });
 

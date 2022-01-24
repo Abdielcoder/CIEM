@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "271239075100",
+    "project_id": "ciem-58bd7",
+    "storage_bucket": "ciem-58bd7.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:271239075100:android:7bd311be93bbe041a816d9",
+        "android_client_info": {
+          "package_name": "pro.abdiel.ciem"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "271239075100-7nme9460kmrup36qam341dg6mqi9tlpd.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "pro.abdiel.ciem",
+            "certificate_hash": "0bda60da23b7a723cc3d68e67219f6dc714bb80b"
+          }
+        },
+        {
+          "client_id": "271239075100-vgqmtaaidagi19tqjhfbrfslineotbu9.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAs17hVWLyRtJoDGmx3yddwXKQOadAnJb0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "271239075100-vgqmtaaidagi19tqjhfbrfslineotbu9.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

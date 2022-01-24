@@ -19,6 +19,9 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.orhanobut.logger.AndroidLogAdapter;
+import com.orhanobut.logger.Logger;
+
 import org.json.JSONException;
 import org.json.JSONObject;
 import java.util.HashMap;
@@ -57,7 +60,7 @@ public class LoginActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
+        Logger.addLogAdapter(new AndroidLogAdapter());
         //Dialog.
         dialogo = new Dialogo();
 
@@ -75,7 +78,7 @@ public class LoginActivity extends AppCompatActivity {
         edtPassword.setText("123");
         //Ger store User
         sp = getSharedPreferences("credenciales",Context.MODE_PRIVATE);
-        Log.d("tag","$$$$$$$$$$$$$$$$$$$$$"+sp.toString());
+        Logger.d(sp);
 
 
         Bundle bundle  = getIntent().getExtras();
@@ -119,7 +122,7 @@ public class LoginActivity extends AppCompatActivity {
                     try {
                         JSONObject obj = new JSONObject(response);
                         String usersId = obj.getString("UsersID");
-                        Log.d("USERSID","!!!!!"+usersId);
+                        Logger.d(usersId);
                         username = obj.getString("username");
                         password = obj.getString("password");
                         profile = obj.getString("profile");
@@ -127,17 +130,18 @@ public class LoginActivity extends AppCompatActivity {
                         delegacionId = obj.getString("delegacionID");
                         activo = obj.getString("Activo");
 
-                        Log.d("WSVOSS","DATOS 1"+username);
-                        Log.d("WSVOSS","DATOS 1"+password);
-                        Log.d("WSVOSS","DATOS 1"+profile);
-                        Log.d("WSVOSS","DATOS 1"+nombre);
-                        Log.d("WSVOSS","DATOS 1"+delegacionId);
-                        Log.d("WSVOSS","DATOS 1"+activo);
+                        Logger.d(username);
+                        Logger.d(password);
+                        Logger.d(profile);
+                        Logger.d(nombre);
+                        Logger.d(delegacionId);
+                        Logger.d(activo);
+
 
                         Intent intent = new Intent(getApplicationContext(), MainActivity.class);
 
                         intent.putExtra("usersId",usersId);
-                        Log.d("USERSID-MAIN","Esta la info que viene del MAIN"+usersId);
+                        Logger.d(usersId);
                         intent.putExtra("username",username);
                         intent.putExtra("password",password);
                         intent.putExtra("profile",profile);
