@@ -55,6 +55,7 @@ public class LoginActivity extends AppCompatActivity {
     private String nombre;
     private String delegacionId;
     private String activo;
+    private String clienteID;
     private String usersId;
     private Dialogo dialogo;
     @Override
@@ -122,6 +123,7 @@ public class LoginActivity extends AppCompatActivity {
                     try {
                         JSONObject obj = new JSONObject(response);
                         String usersId = obj.getString("UsersID");
+                        Logger.json(obj.toString());
                         Logger.d(usersId);
                         username = obj.getString("username");
                         password = obj.getString("password");
@@ -129,6 +131,7 @@ public class LoginActivity extends AppCompatActivity {
                         nombre = obj.getString("comment");
                         delegacionId = obj.getString("delegacionID");
                         activo = obj.getString("Activo");
+                        clienteID = obj.getString("clienteID");
 
                         Logger.d(username);
                         Logger.d(password);
@@ -136,6 +139,7 @@ public class LoginActivity extends AppCompatActivity {
                         Logger.d(nombre);
                         Logger.d(delegacionId);
                         Logger.d(activo);
+                        Logger.d(clienteID);
 
 
                         Intent intent = new Intent(getApplicationContext(), MainActivity.class);
@@ -147,6 +151,7 @@ public class LoginActivity extends AppCompatActivity {
                         intent.putExtra("profile",profile);
                         intent.putExtra("nombre",nombre);
                         intent.putExtra("delegacionId",delegacionId);
+                        intent.putExtra("clienteID",clienteID);
                         intent.putExtra("activo",activo);
 
                         SharedPreferences preferences = getSharedPreferences("credenciales", Context.MODE_PRIVATE);

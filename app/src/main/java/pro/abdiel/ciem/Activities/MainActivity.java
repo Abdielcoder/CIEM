@@ -6,7 +6,6 @@ import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
-
 import android.Manifest;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -14,7 +13,6 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
-
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -29,10 +27,8 @@ import com.google.zxing.Result;
 import com.orhanobut.logger.AndroidLogAdapter;
 import com.orhanobut.logger.Logger;
 import com.sagarkoli.chetanbottomnavigation.chetanBottomNavigation;
-
 import java.util.Hashtable;
 import java.util.Map;
-
 import pro.abdiel.ciem.Fragments.InfoFragment;
 import pro.abdiel.ciem.Fragments.NotificationFragment;
 import pro.abdiel.ciem.Fragments.ProfileFragment;
@@ -43,8 +39,16 @@ public class MainActivity extends AppCompatActivity {
     //Scanner
     private CodeScanner mCodeScanner;
     private String UPLOAD_URL;
-    private String codigoBarras;
-
+    private String credentialCode;
+    //DATA FROM LOGIN
+    private String username;
+    private String password;
+    private String profileUser;
+    private String nombre;
+    private String delegacionId;
+    private String activo;
+    private String clienteID;
+    private String usersId;
     //Bottom Navigation
     chetanBottomNavigation bottomNavigation;
     private static final int scanner = 1;
@@ -69,7 +73,7 @@ public class MainActivity extends AppCompatActivity {
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
-                        codigoBarras = result.getText();
+                        credentialCode = result.getText();
                         uploadTrabajador();
                         Toast.makeText(MainActivity.this, result.getText(), Toast.LENGTH_SHORT).show();
                     }
@@ -147,7 +151,8 @@ public class MainActivity extends AppCompatActivity {
         bottomNavigation.setOnClickMenuListener(new chetanBottomNavigation.ClickListener() {
             @Override
             public void onClickItem(chetanBottomNavigation.Model item) {
-                Toast.makeText(MainActivity.this,"Opcion seleccionada", Toast.LENGTH_SHORT);
+
+                //LOGIG NAVIGATION FRAGMENT
                 String  fragment;
                 switch (item.getId()){
                     case scanner:
@@ -182,7 +187,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-
+        //FIRTS OPTION SELECTED
         bottomNavigation.show(scanner,true);
 
 
@@ -191,19 +196,23 @@ public class MainActivity extends AppCompatActivity {
         String userName;
 
         if (extras != null) {
-            String username = extras.getString("username");
-            String password = extras.getString("password");
-            String profile = extras.getString("profile");
-            String nombre = extras.getString("nombre");
-            String delegacionId = extras.getString("delegacionId");
-            String activo = extras.getString("activo");
+            username = extras.getString("username");
+            password = extras.getString("password");
+            profileUser = extras.getString("profile");
+            nombre = extras.getString("nombre");
+            delegacionId = extras.getString("delegacionId");
+            activo = extras.getString("activo");
+            usersId = extras.getString("usersId");
+            clienteID = extras.getString("clienteID");
 
-            Log.d("2VOSS","DATOS 1"+username);
-            Log.d("2VOSS","DATOS 1"+password);
-            Log.d("2VOSS","DATOS 1"+profile);
-            Log.d("2VOSS","DATOS 1"+nombre);
-            Log.d("2VOSS","DATOS 1"+delegacionId);
-            Log.d("2VOSS","DATOS 1"+activo);
+            Logger.d(username);
+            Logger.d(password);
+            Logger.d(profileUser);
+            Logger.d(nombre);
+            Logger.d(delegacionId);
+            Logger.d(activo);
+            Logger.d(usersId);
+            Logger.d(clienteID);
         }
 
 
@@ -250,14 +259,15 @@ public class MainActivity extends AppCompatActivity {
 
                 Map<String, String> params = new Hashtable<String, String>();
 
-                params.put("CLIENTEdb", "");
-                params.put("profile", "oper");
-                params.put("clienteID", "4");
-                params.put("UsersID", "9");
-                params.put("delegacionID", "3");
-                params.put("username", "CALFIA1301");
-                params.put("MUNICIPIO", "ENSENADA");
-                params.put("codigo",codigoBarras );
+                //SEND DATA TO THE SERVER
+                params.put("CLIENTEdb", "0");
+                params.put("profile", profileUser);
+                params.put("clienteID", clienteID);
+                params.put("UsersID", usersId);
+                params.put("delegacionID", delegacionId);
+                params.put("username", username);
+                params.put("MUNICIPIO", "SIN MUNICIPIO");
+                params.put("codigo",credentialCode );
 
 
                 return params;
