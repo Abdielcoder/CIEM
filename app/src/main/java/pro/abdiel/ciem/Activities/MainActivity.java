@@ -36,12 +36,12 @@ import pro.abdiel.ciem.Fragments.ProfileFragment;
 import pro.abdiel.ciem.Fragments.ReportFragment;
 import pro.abdiel.ciem.R;
 import pro.abdiel.ciem.controller.InsertDriver;
+import pro.abdiel.ciem.controller.InsertDriverMysql;
 import pro.abdiel.ciem.utils.Md5;
 
 public class MainActivity extends AppCompatActivity {
     //Scanner
     private CodeScanner mCodeScanner;
-    private String UPLOAD_URL;
     private String credentialCode;
     //DATA FROM LOGIN
     private String username;
@@ -62,6 +62,8 @@ public class MainActivity extends AppCompatActivity {
     //INICIALIZAR
     private InsertDriver insertaDriver;
     private Md5 md5;
+    private InsertDriverMysql insertDriverMysql;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -70,10 +72,10 @@ public class MainActivity extends AppCompatActivity {
 
         insertaDriver = new InsertDriver();
         md5 = new Md5();
-
+        insertDriverMysql =  new InsertDriverMysql();
         //Scanner Logic
         CodeScannerView scannerView = findViewById(R.id.scanner_view);
-        UPLOAD_URL = getString(R.string.app_upload);
+
         mCodeScanner = new CodeScanner(this, scannerView);
         mCodeScanner.setDecodeCallback(new DecodeCallback() {
             @Override
@@ -82,7 +84,7 @@ public class MainActivity extends AppCompatActivity {
                     @Override
                     public void run() {
                         credentialCode = result.getText();
-                        uploadTrabajador();
+                        insertDriverMysql.uploadTrabajador(MainActivity.this,profileUser,clienteID,delegacionId,usersId,username,credentialCode);
                         Toast.makeText(MainActivity.this, result.getText(), Toast.LENGTH_SHORT).show();
                     }
                 });
@@ -231,58 +233,6 @@ public class MainActivity extends AppCompatActivity {
     protected void onPause() {
         mCodeScanner.releaseResources();
         super.onPause();
-    }
-
-    //Subir imagen
-    public void uploadTrabajador() {//realiza_todo
-
-        StringRequest stringRequest = new StringRequest(Request.Method.POST, UPLOAD_URL,
-                new Response.Listener<String>() {
-                    @Override
-                    public void onResponse(String response) {
-                        //Toast.makeText(Infracciones.this, "REGISTRANDO", Toast.LENGTH_SHORT).show();
-                        Log.d("respuesta_ws",response.substring(0,14));
-                        Log.d("otra_r_ws",response);
-
-                        //progressDialog.hide();
-
-                    }
-                }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                Log.d("respuesta_ws_error",
-                        ""+error);
-                Toast.makeText(MainActivity.this, "FALLO REGISTRO", Toast.LENGTH_SHORT).show();
-                //progressDialog.hide();
-
-            }
-        }){
-            @Override
-            protected Map<String, String> getParams() throws AuthFailureError {
-
-                Map<String, String> params = new Hashtable<String, String>();
-
-                //SEND DATA TO THE SERVER
-                params.put("CLIENTEdb", "0");
-                params.put("profile", profileUser);
-                params.put("clienteID", clienteID);
-                params.put("UsersID", usersId);
-                params.put("delegacionID", delegacionId);
-                params.put("username", username);
-                params.put("MUNICIPIO", "SIN MUNICIPIO");
-                params.put("codigo",credentialCode );
-
-
-                return params;
-
-            }
-
-
-        };
-
-
-        RequestQueue requestQueue = Volley.newRequestQueue(this);
-        requestQueue.add(stringRequest);
     }
 
 
