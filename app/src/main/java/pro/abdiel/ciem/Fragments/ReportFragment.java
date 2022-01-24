@@ -42,8 +42,13 @@ public class ReportFragment extends Fragment {
     private List<ReadCredentialsModel> initDataCredentials() {
 
         itemList=new ArrayList<ReadCredentialsModel>();
-        itemList.add(new ReadCredentialsModel("Elsa Gutierrez","MEXON","24 - ENE- 2022","13:33","093892",R.drawable.messaging));
-
+        itemList.add(new ReadCredentialsModel("Elsa Gutierrez","MEXON","24 - ENE- 2022","13:33","093892",R.drawable.alejandra));
+        itemList.add(new ReadCredentialsModel("Veronica Galindo","MEXON","24 - ENE- 2022","13:36","093833",R.drawable.veronica));
+        itemList.add(new ReadCredentialsModel("Miriam Rosas","MEXON","24 - ENE- 2022","13:34","093643",R.drawable.miriam));
+        itemList.add(new ReadCredentialsModel("Jair Hernadez","MEXON","24 - ENE- 2022","13:40","093375",R.drawable.jair));
+        itemList.add(new ReadCredentialsModel("Angeles Rivera","MEXON","24 - ENE- 2022","13:20","093888",R.drawable.angeles));
+        itemList.add(new ReadCredentialsModel("Sofia Sanchez","MEXON","24 - ENE- 2022","13:22","0938456",R.drawable.sofia));
+        itemList.add(new ReadCredentialsModel("Roberto Martinez","MEXON","24 - ENE- 2022","13:25","097056",R.drawable.roberto));
 
 
 
