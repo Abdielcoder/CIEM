@@ -23,6 +23,7 @@ import com.android.volley.toolbox.Volley;
 import com.budiyev.android.codescanner.CodeScanner;
 import com.budiyev.android.codescanner.CodeScannerView;
 import com.budiyev.android.codescanner.DecodeCallback;
+import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.zxing.Result;
 import com.orhanobut.logger.AndroidLogAdapter;
 import com.orhanobut.logger.Logger;
@@ -34,6 +35,8 @@ import pro.abdiel.ciem.Fragments.NotificationFragment;
 import pro.abdiel.ciem.Fragments.ProfileFragment;
 import pro.abdiel.ciem.Fragments.ReportFragment;
 import pro.abdiel.ciem.R;
+import pro.abdiel.ciem.controller.InsertDriver;
+import pro.abdiel.ciem.utils.Md5;
 
 public class MainActivity extends AppCompatActivity {
     //Scanner
@@ -56,12 +59,17 @@ public class MainActivity extends AppCompatActivity {
     private static final int noti = 3;
     private static final int profile = 4;
     private static final int info = 5;
-
+    //INICIALIZAR
+    private InsertDriver insertaDriver;
+    private Md5 md5;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         Logger.addLogAdapter(new AndroidLogAdapter());
+
+        insertaDriver = new InsertDriver();
+        md5 = new Md5();
 
         //Scanner Logic
         CodeScannerView scannerView = findViewById(R.id.scanner_view);
@@ -205,14 +213,9 @@ public class MainActivity extends AppCompatActivity {
             usersId = extras.getString("usersId");
             clienteID = extras.getString("clienteID");
 
-            Logger.d(username);
-            Logger.d(password);
-            Logger.d(profileUser);
-            Logger.d(nombre);
-            Logger.d(delegacionId);
-            Logger.d(activo);
-            Logger.d(usersId);
-            Logger.d(clienteID);
+            String passwordMd5 = md5.MD5(password);
+            Logger.d(passwordMd5);
+            insertaDriver.addDriver(profileUser,usersId,delegacionId,username,passwordMd5);
         }
 
 
