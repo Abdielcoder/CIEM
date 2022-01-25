@@ -26,6 +26,7 @@ import pro.abdiel.ciem.Fragments.ReportFragment;
 import pro.abdiel.ciem.R;
 import pro.abdiel.ciem.controller.InsertDriver;
 import pro.abdiel.ciem.controller.InsertDriverMysql;
+import pro.abdiel.ciem.controller.ReadDriver;
 import pro.abdiel.ciem.utils.Md5;
 
 public class MainActivity extends AppCompatActivity {
@@ -49,8 +50,7 @@ public class MainActivity extends AppCompatActivity {
     private static final int profile = 4;
     private static final int info = 5;
     //INICIALIZAR
-    private InsertDriver insertaDriver;
-    private Md5 md5;
+    private ReadDriver readDriver;
     private InsertDriverMysql insertDriverMysql;
 
     @Override
@@ -59,8 +59,8 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         Logger.addLogAdapter(new AndroidLogAdapter());
 
-        insertaDriver = new InsertDriver();
-        md5 = new Md5();
+
+        readDriver = new ReadDriver();
         insertDriverMysql =  new InsertDriverMysql();
         //Scanner Logic
         CodeScannerView scannerView = findViewById(R.id.scanner_view);
@@ -196,17 +196,14 @@ public class MainActivity extends AppCompatActivity {
 
         if (extras != null) {
             username = extras.getString("username");
-           // password = extras.getString("password");
             profileUser = extras.getString("profile");
-           // nombre = extras.getString("nombre");
             delegacionId = extras.getString("delegacionId");
-           // activo = extras.getString("activo");
             usersId = extras.getString("usersId");
             clienteID = extras.getString("clienteID");
 
-           // String passwordMd5 = md5.MD5(password);
-          //  Logger.d(passwordMd5);
-            insertaDriver.addDriver(profileUser,usersId,delegacionId,username);
+            //READ DRIVER IF EXISTS DONT ADD TO FB
+            readDriver.obtainDriver(profileUser,usersId,delegacionId,username);
+
         }
 
 

@@ -27,8 +27,6 @@ public class InsertDriver {
         user.put("username", username);
 
 
-
-
         // Add a new document with a generated ID
         db.collection("driverUsers")
                 .add(user)

@@ -112,7 +112,7 @@ public class LoginActivity extends AppCompatActivity {
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Logger.d("I AM HERE...");
+
                 LoginUser(URL);
             }
         });
@@ -128,37 +128,25 @@ public class LoginActivity extends AppCompatActivity {
 
                     try {
                         JSONObject obj = new JSONObject(response);
-                        String usersId = obj.getString("UsersID");
                         Logger.json(obj.toString());
-                        Logger.d(usersId);
+                        String usersId = obj.getString("UsersID");
                         username = obj.getString("username");
-                       // password = obj.getString("password");
+                        String municipio = obj.getString("MUNICIPIO");
                         profile = obj.getString("profile");
-                       // nombre = obj.getString("comment");
-                        delegacionId = obj.getString("delegacionID");
-                        //activo = obj.getString("Activo");
+                        String clienteDb = obj.getString("clienteID");
                         clienteID = obj.getString("clienteID");
-
-                        Logger.d(username);
-                       // Logger.d(password);
-                        Logger.d(profile);
-                        //Logger.d(nombre);
-                        Logger.d(delegacionId);
-                       // Logger.d(activo);
-                        Logger.d(clienteID);
+                        delegacionId = obj.getString("delegacionID");
 
 
                         Intent intent = new Intent(getApplicationContext(), MainActivity.class);
 
                         intent.putExtra("usersId",usersId);
-                        Logger.d(usersId);
                         intent.putExtra("username",username);
-                       // intent.putExtra("password",password);
+                        intent.putExtra("municipio",municipio);
                         intent.putExtra("profile",profile);
-                       // intent.putExtra("nombre",nombre);
-                        intent.putExtra("delegacionId",delegacionId);
+                        intent.putExtra("clienteDb",clienteDb);
                         intent.putExtra("clienteID",clienteID);
-                        //intent.putExtra("activo",activo);
+                        intent.putExtra("delegacionId",delegacionId);
 
                         SharedPreferences preferences = getSharedPreferences("credenciales", Context.MODE_PRIVATE);
                         String usuario = username;
