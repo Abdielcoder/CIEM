@@ -24,10 +24,8 @@ import pro.abdiel.ciem.Fragments.NotificationFragment;
 import pro.abdiel.ciem.Fragments.ProfileFragment;
 import pro.abdiel.ciem.Fragments.ReportFragment;
 import pro.abdiel.ciem.R;
-import pro.abdiel.ciem.controller.InsertDriver;
 import pro.abdiel.ciem.controller.InsertDriverMysql;
 import pro.abdiel.ciem.controller.ReadDriver;
-import pro.abdiel.ciem.utils.Md5;
 
 public class MainActivity extends AppCompatActivity {
     //Scanner

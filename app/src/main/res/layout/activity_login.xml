@@ -35,8 +35,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
-                android:fontFamily="sans-serif-medium"
-                android:text="Login"
+                android:fontFamily="@font/chakra_ligth"
+                android:text="Inicia"
                 android:textColor="@color/white"
                 android:textSize="30sp" />
 
@@ -56,8 +56,8 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:fontFamily="sans-serif-light"
-                        android:text="Username"
+                        android:fontFamily="@font/chakra_ligth"
+                        android:text="Usuario"
                         android:textAllCaps="true"
                         android:textColor="@color/white"
                         android:textSize="15sp" />
@@ -85,8 +85,8 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:fontFamily="sans-serif-light"
-                        android:text="Password"
+                        android:fontFamily="@font/chakra_ligth"
+                        android:text="Contraseña"
                         android:textAllCaps="true"
                         android:textColor="@color/white"
                         android:textSize="15sp" />
@@ -107,15 +107,15 @@
 
             </LinearLayout>
 
-            <Button
+            <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/btnLogin"
                 android:layout_width="wrap_content"
-                android:layout_height="40dp"
+                android:layout_height="50dp"
                 android:layout_below="@+id/linlay1"
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="50dp"
                 android:background="@drawable/btn_bg"
-                android:fontFamily="sans-serif-medium"
+                android:fontFamily="@font/chakra_semi_bold"
                 android:paddingLeft="70dp"
                 android:paddingRight="70dp"
                 android:text="Iniciar Sesion"
