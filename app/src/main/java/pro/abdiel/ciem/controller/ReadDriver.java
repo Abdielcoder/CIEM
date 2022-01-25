@@ -12,7 +12,6 @@ import com.orhanobut.logger.Logger;
 public class ReadDriver {
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
     private String documentFB= "null";
-    private InsertDriver insertaDriver = new InsertDriver();
     public ReadDriver() {
     }
 
@@ -33,7 +32,7 @@ public class ReadDriver {
                                 Logger.d(documentFB);
                             }
                             if (documentFB.equals("null")){
-                                insertaDriver.addDriver(profileUser,usersId,delegacionId,username);
+
                             }
                         } else {
 

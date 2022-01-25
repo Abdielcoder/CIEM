@@ -72,7 +72,7 @@ public class LoginActivity extends AppCompatActivity {
         Logger.addLogAdapter(new AndroidLogAdapter());
         //PRGRESS DIALOG
         loadingDialogs = new LoadDialogs(LoginActivity.this);
-      
+
        // dialogo = new Dialogo();
         dialog = new Dialog(this);
         //View

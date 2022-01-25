@@ -14,14 +14,17 @@ import java.util.Hashtable;
 import java.util.Map;
 import pro.abdiel.ciem.R;
 
-public class InsertDriverMysql {
+public class InsertCardMysql {
     private String UPLOAD_URL;
-    public InsertDriverMysql() {
+    private InsertClientCard insertaDriver = new InsertClientCard();
+    public InsertCardMysql() {
     }
 
     //UPLOAD TO MYSQL
-    public void uploadTrabajador(Context context,String profileUser,String clienteID, String usersId, String delegacionId,
-                                 String username, String credentialCode) {//realiza_todo
+    public void uploadCardClient(Context context,String profileUser,String clienteID, String usersId, String delegacionId,
+                                 String username, String credentialCode,String municipio) {
+        insertaDriver.addCard(profileUser,usersId,delegacionId,username,credentialCode,municipio);
+        //realiza_todo
         UPLOAD_URL = context.getString(R.string.app_upload);
         StringRequest stringRequest = new StringRequest(Request.Method.POST, UPLOAD_URL,
                 new Response.Listener<String>() {
@@ -56,7 +59,7 @@ public class InsertDriverMysql {
                 params.put("UsersID", usersId);
                 params.put("delegacionID", delegacionId);
                 params.put("username", username);
-                params.put("MUNICIPIO", "SIN MUNICIPIO");
+                params.put("MUNICIPIO", municipio);
                 params.put("codigo",credentialCode );
 
 

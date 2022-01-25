@@ -24,7 +24,7 @@ import pro.abdiel.ciem.Fragments.NotificationFragment;
 import pro.abdiel.ciem.Fragments.ProfileFragment;
 import pro.abdiel.ciem.Fragments.ReportFragment;
 import pro.abdiel.ciem.R;
-import pro.abdiel.ciem.controller.InsertDriverMysql;
+import pro.abdiel.ciem.controller.InsertCardMysql;
 import pro.abdiel.ciem.controller.ReadDriver;
 import pro.abdiel.ciem.utils.LoadDialogs;
 
@@ -41,6 +41,7 @@ public class MainActivity extends AppCompatActivity {
     private String activo;
     private String clienteID;
     private String usersId;
+    private String municipio;
     //Bottom Navigation
     chetanBottomNavigation bottomNavigation;
     private static final int scanner = 1;
@@ -50,7 +51,7 @@ public class MainActivity extends AppCompatActivity {
     private static final int info = 5;
     //INICIALIZAR
     private ReadDriver readDriver;
-    private InsertDriverMysql insertDriverMysql;
+    private InsertCardMysql insertDriverMysql;
     LoadDialogs loadingDialogs;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,7 +62,7 @@ public class MainActivity extends AppCompatActivity {
         loadingDialogs = new LoadDialogs(MainActivity.this);
 
         readDriver = new ReadDriver();
-        insertDriverMysql =  new InsertDriverMysql();
+        insertDriverMysql =  new InsertCardMysql();
         //Scanner Logic
         CodeScannerView scannerView = findViewById(R.id.scanner_view);
 
@@ -73,7 +74,7 @@ public class MainActivity extends AppCompatActivity {
                     @Override
                     public void run() {
                         credentialCode = result.getText();
-                        insertDriverMysql.uploadTrabajador(MainActivity.this,profileUser,clienteID,delegacionId,usersId,username,credentialCode);
+                        insertDriverMysql.uploadCardClient(MainActivity.this,profileUser,clienteID,delegacionId,usersId,username,credentialCode,municipio);
                         Toast.makeText(MainActivity.this, result.getText(), Toast.LENGTH_SHORT).show();
                     }
                 });
@@ -200,7 +201,7 @@ public class MainActivity extends AppCompatActivity {
             delegacionId = extras.getString("delegacionId");
             usersId = extras.getString("usersId");
             clienteID = extras.getString("clienteID");
-
+            municipio = extras.getString("municipio");
             //READ DRIVER IF EXISTS DONT ADD TO FB
             readDriver.obtainDriver(profileUser,usersId,delegacionId,username);
 
