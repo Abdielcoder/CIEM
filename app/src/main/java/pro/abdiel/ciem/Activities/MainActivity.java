@@ -26,6 +26,7 @@ import pro.abdiel.ciem.Fragments.ReportFragment;
 import pro.abdiel.ciem.R;
 import pro.abdiel.ciem.controller.InsertDriverMysql;
 import pro.abdiel.ciem.controller.ReadDriver;
+import pro.abdiel.ciem.utils.LoadDialogs;
 
 public class MainActivity extends AppCompatActivity {
     //Scanner
@@ -50,13 +51,14 @@ public class MainActivity extends AppCompatActivity {
     //INICIALIZAR
     private ReadDriver readDriver;
     private InsertDriverMysql insertDriverMysql;
-
+    LoadDialogs loadingDialogs;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         Logger.addLogAdapter(new AndroidLogAdapter());
-
+        //PRGRESS DIALOG
+        loadingDialogs = new LoadDialogs(MainActivity.this);
 
         readDriver = new ReadDriver();
         insertDriverMysql =  new InsertDriverMysql();

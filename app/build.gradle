@@ -56,5 +56,7 @@ dependencies {
     implementation 'com.orhanobut:logger:2.2.0'
     //CUSTOM DIALOGS
     implementation 'com.google.android.material:material:1.0.0'
+    //CUSTOM PROGRESSBAR
+    implementation 'com.github.ybq:Android-SpinKit:1.4.0'
 }
 

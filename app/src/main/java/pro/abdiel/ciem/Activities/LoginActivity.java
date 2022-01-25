@@ -34,7 +34,8 @@ import android.os.Handler;
 import android.widget.RelativeLayout;
 
 import pro.abdiel.ciem.R;
-import pro.abdiel.ciem.utils.Dialogo;
+import pro.abdiel.ciem.utils.LoadDialogs;
+
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -62,12 +63,16 @@ public class LoginActivity extends AppCompatActivity {
     private String usersId;
    // private Dialogo dialogo;
     private Dialog dialog;
+    //Initialize methods
+   LoadDialogs loadingDialogs;
    /* private Context context;*/
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         Logger.addLogAdapter(new AndroidLogAdapter());
-        //Dialog.
+        //PRGRESS DIALOG
+        loadingDialogs = new LoadDialogs(LoginActivity.this);
+      
        // dialogo = new Dialogo();
         dialog = new Dialog(this);
         //View
@@ -112,7 +117,7 @@ public class LoginActivity extends AppCompatActivity {
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                loadingDialogs.startLoading();
                 LoginUser(URL);
             }
         });
