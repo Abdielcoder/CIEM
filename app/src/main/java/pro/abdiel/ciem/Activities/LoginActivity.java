@@ -165,7 +165,7 @@ public class LoginActivity extends AppCompatActivity {
                         edtUser.setText("CALFIA1301");
                         edtPassword.setText("123");
                         editor.commit();
-
+                        loadingDialogs.desmissionDialog();
                         startActivity(intent);
                         finish();
 
@@ -173,12 +173,14 @@ public class LoginActivity extends AppCompatActivity {
                         Log.d("error_usuario..",""+e);
                         e.printStackTrace();
                         dialogClose();
+                        loadingDialogs.desmissionDialog();
                     }
                 }else{
 
                    Toast.makeText(LoginActivity.this,"DATOS INCORRECTOS",Toast.LENGTH_LONG).show();
                   // dialogo.Mensaje(LoginActivity.this, "Los datos son incorrectos, revisa tu Usuario o Contraseña para continuar." );
                     dialogClose();
+                    loadingDialogs.desmissionDialog();
                 }
             }
         }, new Response.ErrorListener() {
