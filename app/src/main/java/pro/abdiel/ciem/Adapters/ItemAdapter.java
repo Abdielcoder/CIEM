@@ -36,8 +36,8 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ViewHolder> {
     public void onBindViewHolder(@NonNull ItemAdapter.ViewHolder holder, final int position) {
 
         holder.itemImage.setImageResource(itemList1.get(position).getImage());
-        holder.itemSubject.setText(itemList1.get(position).getName());
-        holder.itemMessage.setText(itemList1.get(position).getMessage());
+        holder.itemSubject.setText(itemList1.get(position).getAsunto());
+        holder.itemMessage.setText(itemList1.get(position).getMensaje());
 
 
     }

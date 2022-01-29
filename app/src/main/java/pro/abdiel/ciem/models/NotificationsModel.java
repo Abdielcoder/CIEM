@@ -2,13 +2,17 @@ package pro.abdiel.ciem.models;
 
 public class NotificationsModel {
     int Image;
-    String name;
-    String message;
+    String asunto;
+    String mensaje;
 
-    public NotificationsModel(int image, String name, String message) {
+    public NotificationsModel() {
+
+    }
+
+    public NotificationsModel(int image, String asunto, String mensaje) {
         Image = image;
-        this.name = name;
-        this.message = message;
+        this.asunto = asunto;
+        this.mensaje = mensaje;
     }
 
     public int getImage() {
@@ -19,19 +23,19 @@ public class NotificationsModel {
         Image = image;
     }
 
-    public String getName() {
-        return name;
+    public String getAsunto() {
+        return asunto;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setAsunto(String asunto) {
+        this.asunto = asunto;
     }
 
-    public String getMessage() {
-        return message;
+    public String getMensaje() {
+        return mensaje;
     }
 
-    public void setMessage(String message) {
-        this.message = message;
+    public void setMensaje(String mensaje) {
+        this.mensaje = mensaje;
     }
 }

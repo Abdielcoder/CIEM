@@ -26,6 +26,7 @@ import pro.abdiel.ciem.Fragments.ReportFragment;
 import pro.abdiel.ciem.R;
 import pro.abdiel.ciem.controller.InsertCardMysql;
 import pro.abdiel.ciem.controller.ReadDriver;
+import pro.abdiel.ciem.models.CardClientModel;
 import pro.abdiel.ciem.utils.LoadDialogs;
 
 public class MainActivity extends AppCompatActivity {
@@ -52,6 +53,7 @@ public class MainActivity extends AppCompatActivity {
     //INICIALIZAR
     private ReadDriver readDriver;
     private InsertCardMysql insertDriverMysql;
+    int valorCard;
     LoadDialogs loadingDialogs;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -203,6 +205,7 @@ public class MainActivity extends AppCompatActivity {
             clienteID = extras.getString("clienteID");
             municipio = extras.getString("municipio");
             //READ DRIVER IF EXISTS DONT ADD TO FB
+
             readDriver.obtainDriver(profileUser,usersId,delegacionId,username);
 
         }
