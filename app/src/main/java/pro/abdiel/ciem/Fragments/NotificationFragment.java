@@ -3,6 +3,7 @@ package pro.abdiel.ciem.Fragments;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -12,7 +13,11 @@ import android.view.ViewGroup;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 import com.orhanobut.logger.Logger;
@@ -53,36 +58,33 @@ public class NotificationFragment extends Fragment {
     }
 
     public void consulta(){
+        Logger.d("ENTRO1");
         db.collection("Messages")
-                .get()
-                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                .addSnapshotListener(new EventListener<QuerySnapshot>() {
+
                     @Override
-                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                        itemList=new ArrayList<>();
-                        if (task.isSuccessful()) {
-                            for (QueryDocumentSnapshot document : task.getResult()) {
-                                NotificationsModel noti = document.toObject(NotificationsModel.class);
-                                asunto = noti.getAsunto();
-                                mensaje = noti.getMensaje();
-                                Logger.d(document.getId());
-                                itemList.add(new NotificationsModel(R.drawable.messaging, asunto, mensaje));
-
-
-
-                            }
-                            recyclerView.setAdapter(new ItemAdapter(itemList,getContext()));
-
-                        } else {
-
+                    public void onEvent(@Nullable QuerySnapshot snapshots,
+                                        @Nullable FirebaseFirestoreException e) {
+                        Logger.d("ENTRO2");
+                        if (e != null) {
+                           Logger.d("FALLO");
+                            return;
                         }
+
+                        itemList=new ArrayList<>();
+                        for (DocumentSnapshot doc : snapshots) {
+                            Logger.d("ENTRO3");
+                            if (doc.get("asunto") != null) {
+                                Logger.d("ENTRO");
+
+                                itemList.add(new NotificationsModel(R.drawable.messaging, doc.getString("asunto"), doc.getString("mensaje")));
+                            }
+                        }
+                        recyclerView.setAdapter(new ItemAdapter(itemList,getContext()));
+
+
                     }
                 });
     }
-
-
-
-
-
-
 
 }
