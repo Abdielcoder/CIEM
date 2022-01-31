@@ -1,18 +1,28 @@
 package pro.abdiel.ciem.models;
 
 public class NotificationsModel {
-    int Image;
-    String asunto;
-    String mensaje;
 
+    private int Image;
+    private String asunto;
+    private String mensaje;
+    private String uuid;
     public NotificationsModel() {
 
     }
 
-    public NotificationsModel(int image, String asunto, String mensaje) {
+    public NotificationsModel( int image, String uuid, String asunto, String mensaje) {
         Image = image;
         this.asunto = asunto;
         this.mensaje = mensaje;
+        this.uuid = uuid;
+    }
+
+    public String getUuid() {
+        return uuid;
+    }
+
+    public void setUuid(String uuid) {
+        this.uuid = uuid;
     }
 
     public int getImage() {

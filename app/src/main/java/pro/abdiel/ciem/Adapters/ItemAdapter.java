@@ -1,5 +1,6 @@
 package pro.abdiel.ciem.Adapters;
 
+import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.Context;
@@ -22,14 +23,16 @@ import com.orhanobut.logger.Logger;
 
 import java.util.List;
 import pro.abdiel.ciem.R;
+import pro.abdiel.ciem.controller.DeleteMessages;
 import pro.abdiel.ciem.models.NotificationsModel;
 
 public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ViewHolder> {
 
-    List<NotificationsModel> itemList1;
+    private  List<NotificationsModel> itemList1;
     private Context context;
     private Dialog dialog;
-
+    private String document;
+    private DeleteMessages deleteMessages = new DeleteMessages();
     public ItemAdapter(List<NotificationsModel> itemList, Context context) {
         this.itemList1=itemList;
         this.context=context;
@@ -46,15 +49,11 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ViewHolder> {
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ItemAdapter.ViewHolder holder, final int position) {
+    public void onBindViewHolder(@NonNull ItemAdapter.ViewHolder holder, @SuppressLint("RecyclerView") int position) {
 
         holder.itemImage.setImageResource(itemList1.get(position).getImage());
         holder.itemSubject.setText(itemList1.get(position).getAsunto());
-        //holder.itemMessage.setText(itemList1.get(position).getMensaje());
 
-      /*  holder.tvTitle.setText(itemList1.get(position).getMensaje());
-        holder.tvMessage.setText(itemList1.get(position).getMensaje());*/
-      //  Logger.d(position);
 
 
         holder.btnVer.setOnClickListener(new View.OnClickListener() {
@@ -64,13 +63,15 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ViewHolder> {
                 new AlertDialog.Builder(v.getRootView().getContext(), AlertDialog.THEME_DEVICE_DEFAULT_DARK)
                         .setMessage("Asunto: "+itemList1.get(position).getMensaje())
                         .setTitle("Mensaje: "+itemList1.get(position).getAsunto())
-                        .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                        .setPositiveButton("Borrar", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
+                                Logger.d(itemList1.get(position).getUuid());
+                                deleteMessages.deleteMessage(itemList1.get(position).getUuid());
 
                             }
                         })
-                        .setNegativeButton("No", new DialogInterface.OnClickListener() {
+                        .setNegativeButton("Salir", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
 
@@ -81,6 +82,14 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ViewHolder> {
 
             }
         });
+
+        holder.btnDelete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                deleteMessages.deleteMessage(itemList1.get(position).getUuid());
+            }
+        });
+
     }
 
     @Override
@@ -89,11 +98,11 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ViewHolder> {
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
-
+        String document;
         ImageView itemImage;
         TextView itemSubject,itemMessage;
         LinearLayout linearLayout;
-        Button btnVer;
+        Button btnVer,btnDelete;
 
 
         public ViewHolder(@NonNull View itemView) {
@@ -101,13 +110,15 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ViewHolder> {
 
             itemImage=itemView.findViewById(R.id.itemImg);
             itemSubject=itemView.findViewById(R.id.itemSubject);
-            //itemMessage=itemView.findViewById(R.id.itemMenssage);
             linearLayout=itemView.findViewById(R.id.vertical_linnear);
             btnVer=itemView.findViewById(R.id.buttonMessages);
+            btnDelete=itemView.findViewById(R.id.buttonDeleteMesseges);
 
 
 
         }
     }
+
+
 
 }

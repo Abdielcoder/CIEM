@@ -15,11 +15,14 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 
+import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.firestore.QuerySnapshot;
+import com.orhanobut.logger.Logger;
+
 import java.util.ArrayList;
 import java.util.List;
 import pro.abdiel.ciem.Adapters.ItemAdapter;
@@ -66,11 +69,13 @@ public class NotificationFragment extends Fragment {
                         }
                         itemList=new ArrayList<>();
                         for (DocumentSnapshot doc : snapshots) {
+                            //GET DOCUMENT ID
 
                             if (doc.get("asunto") != null) {
+                                String uuid = doc.getString("uuid");
+                                Logger.d(uuid);
 
-
-                                itemList.add(new NotificationsModel(R.drawable.messaging, doc.getString("asunto"), doc.getString("mensaje")));
+                                itemList.add(new NotificationsModel(R.drawable.messaging, uuid,doc.getString("asunto"), doc.getString("mensaje")));
                             }
                         }
                         recyclerView.setAdapter(new ItemAdapter(itemList,getContext()));
