@@ -172,14 +172,14 @@ public class LoginActivity extends AppCompatActivity {
                     } catch (JSONException e) {
                         Log.d("error_usuario..",""+e);
                         e.printStackTrace();
-                        dialogClose();
+                        dialogFailLogin();
                         loadingDialogs.desmissionDialog();
                     }
                 }else{
 
                    Toast.makeText(LoginActivity.this,"DATOS INCORRECTOS",Toast.LENGTH_LONG).show();
                   // dialogo.Mensaje(LoginActivity.this, "Los datos son incorrectos, revisa tu Usuario o Contraseña para continuar." );
-                    dialogClose();
+                    dialogFailLogin();
                     loadingDialogs.desmissionDialog();
                 }
             }
@@ -202,7 +202,7 @@ public class LoginActivity extends AppCompatActivity {
         requesrQueue.add(stringRequest);
     }
 
-    private void dialogClose()
+    private void dialogFailLogin()
     {
        dialog.setContentView(R.layout.validate_user_layout);
                    dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));

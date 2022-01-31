@@ -43,11 +43,8 @@ public class MainActivity extends AppCompatActivity {
     private String credentialCode;
     //DATA FROM LOGIN
     private String username;
-    private String password;
     private String profileUser;
-    private String nombre;
     private String delegacionId;
-    private String activo;
     private String clienteID;
     private String usersId;
     private String municipio;
@@ -241,23 +238,4 @@ public class MainActivity extends AppCompatActivity {
         transaction.commit();
     }
 
-    /*private void notiFication(){
-        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.O){
-            showNoti();
-        }else{
-            showNewnoti();
-        }
-    }*/
-
-
-
-   /* private void setpendingIntent(Class<MainActivity> mainActivityClass) {
-    }
-
-    private void showNoti() {
-        NotificationChannel channel = new NotificationChannel(SKULL_CHANNER,"NEW", NotificationManager.IMPORTANCE_DEFAULT);
-        NotificationManager manager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
-        manager.createNotificationChannel(channel);
-        showNoti();
-    }*/
 }

@@ -4,7 +4,6 @@
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
-        android:layout_marginBottom="2dp"
         android:layout_height="wrap_content">
 
         <LinearLayout
@@ -41,20 +40,49 @@
                     android:textSize="20dp"
                     android:textStyle="bold" />
 
-
+<!--
                 <TextView
                     android:id="@+id/itemMenssage"
-                    android:layout_width="match_parent"
+                    android:layout_width="150dp"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="15dp"
                     android:layout_marginTop="0dp"
                     android:gravity="left"
-                    android:text="Nueva ruta asignada"
+                    android:text=""
                     android:fontFamily="@font/chakra_ligth"
                     android:textColor="@color/followers"
                     android:textSize="15dp"
-                    android:textStyle="bold" />
+                    android:textStyle="bold" />-->
+                <LinearLayout
+                    android:id="@+id/inner2_horizontal_linnear"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center"
+                    android:orientation="horizontal">
+                    <androidx.appcompat.widget.AppCompatButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/buttonMessages"
+                        android:background="@drawable/btn_accept"
+                        android:fontFamily="@font/chakra_semi_bold"
+                        android:textColor="@color/white"
+                        android:textSize="16sp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_gravity="center"
+                    android:layout_marginRight="10dp"
+                    android:text="Ver"/>
 
+                    <androidx.appcompat.widget.AppCompatButton
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/buttonDeleteMesseges"
+                        android:background="@drawable/btn_bg"
+                        android:fontFamily="@font/chakra_semi_bold"
+                        android:textColor="@color/white"
+                        android:textSize="16sp"
+                        android:layout_gravity="center"
+                        android:text="Eliminar"/>
+                </LinearLayout>
             </LinearLayout>
         </LinearLayout>
     </androidx.cardview.widget.CardView>
