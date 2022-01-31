@@ -1,32 +1,31 @@
 package pro.abdiel.ciem.Fragments;
 
+import android.app.Notification;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
+import android.content.Intent;
 import android.os.Bundle;
 
-import androidx.annotation.NonNull;
+
 import androidx.annotation.Nullable;
+import androidx.core.app.NotificationCompat;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
-import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
+import com.google.firebase.messaging.RemoteMessage;
 import com.orhanobut.logger.Logger;
-
 import java.util.ArrayList;
 import java.util.List;
 import pro.abdiel.ciem.Adapters.ItemAdapter;
 import pro.abdiel.ciem.R;
-import pro.abdiel.ciem.models.CardClientModel;
 import pro.abdiel.ciem.models.NotificationsModel;
 
 
@@ -34,8 +33,6 @@ public class NotificationFragment extends Fragment {
     private FirebaseFirestore db;
     private RecyclerView recyclerView;
     private List<NotificationsModel> itemList;
-    private String asunto;
-    private String mensaje;
     public NotificationFragment() {
         // Required empty public constructor
     }
@@ -51,37 +48,35 @@ public class NotificationFragment extends Fragment {
 
         //FIREBASE
         db = FirebaseFirestore.getInstance();
-        //initData();
         consulta();
 
         return view;
     }
 
+    //EVENT LISTENER TO DATA IN REAL TIME
     public void consulta(){
-        Logger.d("ENTRO1");
+
         db.collection("Messages")
                 .addSnapshotListener(new EventListener<QuerySnapshot>() {
 
                     @Override
                     public void onEvent(@Nullable QuerySnapshot snapshots,
                                         @Nullable FirebaseFirestoreException e) {
-                        Logger.d("ENTRO2");
+
                         if (e != null) {
-                           Logger.d("FALLO");
+
                             return;
                         }
-
                         itemList=new ArrayList<>();
                         for (DocumentSnapshot doc : snapshots) {
-                            Logger.d("ENTRO3");
+
                             if (doc.get("asunto") != null) {
-                                Logger.d("ENTRO");
+
 
                                 itemList.add(new NotificationsModel(R.drawable.messaging, doc.getString("asunto"), doc.getString("mensaje")));
                             }
                         }
                         recyclerView.setAdapter(new ItemAdapter(itemList,getContext()));
-
 
                     }
                 });

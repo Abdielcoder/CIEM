@@ -3,12 +3,19 @@ package pro.abdiel.ciem.Activities;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
+import androidx.core.app.NotificationCompat;
+import androidx.core.app.NotificationManagerCompat;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 import android.Manifest;
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
+import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Toast;
@@ -26,6 +33,7 @@ import pro.abdiel.ciem.Fragments.ReportFragment;
 import pro.abdiel.ciem.R;
 import pro.abdiel.ciem.controller.InsertCardMysql;
 import pro.abdiel.ciem.controller.ReadDriver;
+import pro.abdiel.ciem.controller.ReadMessagges;
 import pro.abdiel.ciem.models.CardClientModel;
 import pro.abdiel.ciem.utils.LoadDialogs;
 
@@ -53,8 +61,8 @@ public class MainActivity extends AppCompatActivity {
     //INICIALIZAR
     private ReadDriver readDriver;
     private InsertCardMysql insertDriverMysql;
-    int valorCard;
-    LoadDialogs loadingDialogs;
+    private LoadDialogs loadingDialogs;
+    private ReadMessagges readMessagges;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -210,7 +218,8 @@ public class MainActivity extends AppCompatActivity {
 
         }
 
-
+        readMessagges = new ReadMessagges();
+        readMessagges.consulta(MainActivity.this);
     }
 
     @Override
@@ -232,4 +241,23 @@ public class MainActivity extends AppCompatActivity {
         transaction.commit();
     }
 
+    /*private void notiFication(){
+        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.O){
+            showNoti();
+        }else{
+            showNewnoti();
+        }
+    }*/
+
+
+
+   /* private void setpendingIntent(Class<MainActivity> mainActivityClass) {
+    }
+
+    private void showNoti() {
+        NotificationChannel channel = new NotificationChannel(SKULL_CHANNER,"NEW", NotificationManager.IMPORTANCE_DEFAULT);
+        NotificationManager manager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+        manager.createNotificationChannel(channel);
+        showNoti();
+    }*/
 }
