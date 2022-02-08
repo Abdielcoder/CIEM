@@ -28,10 +28,10 @@
 
     <ImageView
         android:id="@+id/imageView3"
-        android:layout_width="202dp"
-        android:layout_height="206dp"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
         android:layout_gravity="top|center"
-        android:src="@drawable/idg_alfa" />
+        android:src="@drawable/bitlabs_p" />
 
 
     <ImageView
@@ -50,7 +50,16 @@
         android:layout_marginTop="50dp"
         android:gravity="center_vertical">
 
-
+        <TextView
+            android:id="@+id/tvbit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="0dp"
+            android:textColor="@color/purple_700"
+            android:fontFamily="@font/chakra_semi_bold"
+            android:textSize="25dp"
+            android:text="BIT LABS SYSTEMS" />
     <TextView
         android:id="@+id/tvVersionTitle"
         android:layout_width="wrap_content"

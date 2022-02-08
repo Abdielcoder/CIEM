@@ -50,9 +50,9 @@ public class ReadMessagges {
     }
 
     private void showNewnoti(MainActivity mainActivity) {
-        Bitmap bitmap= BitmapFactory.decodeResource(mainActivity.getResources(),R.drawable.idg_alfa);
+        Bitmap bitmap= BitmapFactory.decodeResource(mainActivity.getResources(),R.drawable.bitlabs_messaging);
         NotificationCompat.Builder builder = new NotificationCompat.Builder(mainActivity,SKULL_CHANNER)
-                .setSmallIcon(R.drawable.idg_alfa)
+                .setSmallIcon(R.drawable.bitlabs_p)
                 .setContentTitle("Tellego un mensaje")
                 .setContentText("Te acaba de llegar un nuevo mensaje")
                 .setStyle(new NotificationCompat.BigPictureStyle()

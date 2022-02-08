@@ -15,6 +15,7 @@ import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.media.MediaPlayer;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
@@ -60,6 +61,8 @@ public class MainActivity extends AppCompatActivity {
     private InsertCardMysql insertDriverMysql;
     private LoadDialogs loadingDialogs;
     private ReadMessagges readMessagges;
+    //NOTIFICATION MEDIA
+    MediaPlayer mediaPlayer;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -67,7 +70,8 @@ public class MainActivity extends AppCompatActivity {
         Logger.addLogAdapter(new AndroidLogAdapter());
         //PRGRESS DIALOG
         loadingDialogs = new LoadDialogs(MainActivity.this);
-
+       
+        mediaPlayer = MediaPlayer.create(MainActivity.this, R.raw.beep_code);
         readDriver = new ReadDriver();
         insertDriverMysql =  new InsertCardMysql();
         //Scanner Logic
@@ -80,6 +84,7 @@ public class MainActivity extends AppCompatActivity {
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
+                        mediaPlayer.start();
                         credentialCode = result.getText();
                         insertDriverMysql.uploadCardClient(MainActivity.this,profileUser,clienteID,delegacionId,usersId,username,credentialCode,municipio);
                         Toast.makeText(MainActivity.this, result.getText(), Toast.LENGTH_SHORT).show();

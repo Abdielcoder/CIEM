@@ -24,7 +24,7 @@ public class DeleteMessages {
     public DeleteMessages() {
 
     }
-    //EVENT LISTENER TO DATA IN REAL TIME
+    //DELETE MESSAGES
     public void deleteMessage(String id){
 
         db = FirebaseFirestore.getInstance();

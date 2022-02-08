@@ -31,7 +31,6 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ViewHolder> {
     private  List<NotificationsModel> itemList1;
     private Context context;
     private Dialog dialog;
-    private String document;
     private DeleteMessages deleteMessages = new DeleteMessages();
     public ItemAdapter(List<NotificationsModel> itemList, Context context) {
         this.itemList1=itemList;
@@ -43,7 +42,6 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ViewHolder> {
     @Override
     public ItemAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view= LayoutInflater.from(parent.getContext()).inflate(R.layout.message_notfications,parent,false);
-       // View view2 = inflater.inflate(R.layout.week_day_dialog, container, false);
         ViewHolder viewHolder=new ViewHolder(view);
         return viewHolder;
     }
@@ -53,8 +51,6 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ViewHolder> {
 
         holder.itemImage.setImageResource(itemList1.get(position).getImage());
         holder.itemSubject.setText(itemList1.get(position).getAsunto());
-
-
 
         holder.btnVer.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -94,11 +90,11 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ViewHolder> {
 
     @Override
     public int getItemCount() {
+        //COUNT BADGED
         return itemList1.size();
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
-        String document;
         ImageView itemImage;
         TextView itemSubject,itemMessage;
         LinearLayout linearLayout;
@@ -113,8 +109,6 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ViewHolder> {
             linearLayout=itemView.findViewById(R.id.vertical_linnear);
             btnVer=itemView.findViewById(R.id.buttonMessages);
             btnDelete=itemView.findViewById(R.id.buttonDeleteMesseges);
-
-
 
         }
     }
