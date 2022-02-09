@@ -70,7 +70,7 @@ public class MainActivity extends AppCompatActivity {
         Logger.addLogAdapter(new AndroidLogAdapter());
         //PRGRESS DIALOG
         loadingDialogs = new LoadDialogs(MainActivity.this);
-       
+
         mediaPlayer = MediaPlayer.create(MainActivity.this, R.raw.beep_code);
         readDriver = new ReadDriver();
         insertDriverMysql =  new InsertCardMysql();
@@ -88,6 +88,9 @@ public class MainActivity extends AppCompatActivity {
                         credentialCode = result.getText();
                         insertDriverMysql.uploadCardClient(MainActivity.this,profileUser,clienteID,delegacionId,usersId,username,credentialCode,municipio);
                         Toast.makeText(MainActivity.this, result.getText(), Toast.LENGTH_SHORT).show();
+                        Intent intent = new Intent(MainActivity.this,MainActivity.class);
+                        startActivity(intent);
+                        finish();
                     }
                 });
             }
