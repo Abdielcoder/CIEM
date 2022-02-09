@@ -1,7 +1,13 @@
 package pro.abdiel.ciem.controller;
 
+import android.app.Dialog;
 import android.content.Context;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.Toast;
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
@@ -17,12 +23,17 @@ import pro.abdiel.ciem.R;
 public class InsertCardMysql {
     private String UPLOAD_URL;
     private InsertClientCard insertaDriver = new InsertClientCard();
+    //DIALOG
+    private Dialog dialog;
+
     public InsertCardMysql() {
     }
 
     //UPLOAD TO MYSQL
     public void uploadCardClient(Context context,String profileUser,String clienteID, String usersId, String delegacionId,
                                  String username, String credentialCode,String municipio) {
+
+        dialog = new Dialog(context);
         insertaDriver.addCard(profileUser,usersId,delegacionId,username,credentialCode,municipio);
         //realiza_todo
         UPLOAD_URL = context.getString(R.string.app_upload);
@@ -35,7 +46,7 @@ public class InsertCardMysql {
                         Log.d("otra_r_ws",response);
 
                         //progressDialog.hide();
-
+                        credentialSucces();
                     }
                 }, new Response.ErrorListener() {
             @Override
@@ -44,7 +55,7 @@ public class InsertCardMysql {
                         ""+error);
                 Toast.makeText(context.getApplicationContext(), "FALLO REGISTRO", Toast.LENGTH_SHORT).show();
                 //progressDialog.hide();
-
+                credentialError();
             }
         }){
             @Override
@@ -74,5 +85,52 @@ public class InsertCardMysql {
         requestQueue.add(stringRequest);
     }
 
+    private void credentialError()
+    {
+        dialog.setContentView(R.layout.credential_validate_error_layout);
+        dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        ImageView imageViewClose=dialog.findViewById(R.id.imageViewClose);
+        Button btn_close_dialog=dialog.findViewById(R.id.btn_close_dialog);
+
+        imageViewClose.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                dialog.dismiss();
+            }
+        });
+
+       /* btn_close_dialog.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                dialog.dismiss();
+            }
+        });*/
+
+        dialog.show();
+    }
+
+    private void credentialSucces()
+    {
+        dialog.setContentView(R.layout.credential_validate_succes_layout);
+        dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        ImageView imageViewClose=dialog.findViewById(R.id.imageViewClose);
+        Button btn_close_dialog=dialog.findViewById(R.id.btn_close_dialog);
+
+        imageViewClose.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                dialog.dismiss();
+            }
+        });
+
+      /*  btn_close_dialog.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                dialog.dismiss();
+            }
+        });*/
+
+        dialog.show();
+    }
 
 }

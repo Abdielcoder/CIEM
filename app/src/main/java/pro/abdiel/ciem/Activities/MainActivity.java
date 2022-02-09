@@ -9,16 +9,22 @@ import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 import android.Manifest;
+import android.app.Dialog;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.media.MediaPlayer;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.View;
+import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.Toast;
 import com.budiyev.android.codescanner.CodeScanner;
 import com.budiyev.android.codescanner.CodeScannerView;
@@ -63,6 +69,7 @@ public class MainActivity extends AppCompatActivity {
     private ReadMessagges readMessagges;
     //NOTIFICATION MEDIA
     MediaPlayer mediaPlayer;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -88,9 +95,15 @@ public class MainActivity extends AppCompatActivity {
                         credentialCode = result.getText();
                         insertDriverMysql.uploadCardClient(MainActivity.this,profileUser,clienteID,delegacionId,usersId,username,credentialCode,municipio);
                         Toast.makeText(MainActivity.this, result.getText(), Toast.LENGTH_SHORT).show();
-                        Intent intent = new Intent(MainActivity.this,MainActivity.class);
-                        startActivity(intent);
-                        finish();
+                        Handler handler = new Handler();
+                        handler.postDelayed(new Runnable() {
+                            public void run() {
+                                Intent intent = new Intent(MainActivity.this,MainActivity.class);
+                                startActivity(intent);
+                                finish();
+                            }
+                        }, 1000);   //5 seconds
+
                     }
                 });
             }
@@ -245,5 +258,7 @@ public class MainActivity extends AppCompatActivity {
         transaction.replace(R.id.frameLayout,fragment);
         transaction.commit();
     }
+
+
 
 }
