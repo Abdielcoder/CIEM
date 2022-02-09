@@ -98,11 +98,12 @@ public class MainActivity extends AppCompatActivity {
                         Handler handler = new Handler();
                         handler.postDelayed(new Runnable() {
                             public void run() {
-                                Intent intent = new Intent(MainActivity.this,MainActivity.class);
-                                startActivity(intent);
-                                finish();
+//                                Intent intent = new Intent(MainActivity.this,MainActivity.class);
+//                                startActivity(intent);
+//                                finish();
+                                mCodeScanner.startPreview();
                             }
-                        }, 1000);   //5 seconds
+                        }, 2000);   //5 seconds
 
                     }
                 });
@@ -258,6 +259,7 @@ public class MainActivity extends AppCompatActivity {
         transaction.replace(R.id.frameLayout,fragment);
         transaction.commit();
     }
+
 
 
 

@@ -4,6 +4,7 @@ import android.app.Dialog;
 import android.content.Context;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
+import android.os.Handler;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -99,14 +100,14 @@ public class InsertCardMysql {
             }
         });
 
-       /* btn_close_dialog.setOnClickListener(new View.OnClickListener() {
+        dialog.show();
+        Handler handler = new Handler();
+        handler.postDelayed(new Runnable() {
             @Override
-            public void onClick(View view) {
+            public void run() {
                 dialog.dismiss();
             }
-        });*/
-
-        dialog.show();
+        }, 2000);
     }
 
     private void credentialSucces()
@@ -123,14 +124,14 @@ public class InsertCardMysql {
             }
         });
 
-      /*  btn_close_dialog.setOnClickListener(new View.OnClickListener() {
+        dialog.show();
+        Handler handler = new Handler();
+        handler.postDelayed(new Runnable() {
             @Override
-            public void onClick(View view) {
+            public void run() {
                 dialog.dismiss();
             }
-        });*/
-
-        dialog.show();
+        }, 2000);
     }
 
 }
